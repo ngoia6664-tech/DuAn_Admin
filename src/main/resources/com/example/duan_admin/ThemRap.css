@@ -1,0 +1,161 @@
+
+.root{
+    -fx-background-color: #050505;
+    -fx-font-family: "Segoe UI";
+}
+
+/* CARD */
+
+.form-card{
+
+    -fx-background-color: #111722;
+
+    -fx-background-radius: 20;
+
+    -fx-border-radius: 20;
+
+    -fx-border-color: #2b3448;
+
+    -fx-border-width: 1.5;
+
+    -fx-pref-width: 550;
+
+    -fx-max-width: 550;
+
+    -fx-effect:
+            dropshadow(
+                    gaussian,
+                    rgba(255,0,0,0.25),
+                    25,
+                    0.2,
+                    0,
+                    0
+            );
+}
+
+/* TITLE */
+
+.title{
+
+    -fx-text-fill: #ff1e1e;
+
+    -fx-font-size: 28px;
+
+    -fx-font-weight: bold;
+}
+
+.subtitle{
+
+    -fx-text-fill: #c0c0c0;
+
+    -fx-font-size: 14px;
+}
+
+/* LABEL */
+
+.field-label{
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 14px;
+
+    -fx-font-weight: bold;
+}
+
+/* INPUT */
+
+.input{
+
+    -fx-pref-width: 420;
+
+    -fx-pref-height: 42;
+
+    -fx-background-color: #1c2433;
+
+    -fx-background-radius: 10;
+
+    -fx-border-radius: 10;
+
+    -fx-border-color: #313c52;
+
+    -fx-text-fill: white;
+
+    -fx-prompt-text-fill: #888888;
+}
+
+.input:focused{
+
+    -fx-border-color: #ff1e1e;
+}
+
+/* TEXTAREA */
+
+.textarea{
+
+    -fx-pref-width: 420;
+
+    -fx-background-color: #1c2433;
+
+    -fx-border-color: #313c52;
+
+    -fx-background-radius: 10;
+
+    -fx-border-radius: 10;
+
+    -fx-text-fill: white;
+
+    -fx-prompt-text-fill: #888888;
+}
+
+.textarea:focused{
+
+    -fx-border-color: #ff1e1e;
+}
+
+/* BUTTON SUBMIT */
+
+.submit-button{
+
+    -fx-background-color: #ff1e1e;
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 14px;
+
+    -fx-font-weight: bold;
+
+    -fx-pref-width: 140;
+
+    -fx-pref-height: 42;
+
+    -fx-background-radius: 10;
+}
+
+.submit-button:hover{
+
+    -fx-background-color: #ff3a3a;
+}
+
+/* BUTTON EXIT */
+
+.exit-button{
+
+    -fx-background-color: #2c3446;
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 14px;
+
+    -fx-font-weight: bold;
+
+    -fx-pref-width: 140;
+
+    -fx-pref-height: 42;
+
+    -fx-background-radius: 10;
+}
+
+.exit-button:hover{
+
+    -fx-background-color: #3d4860;
+}

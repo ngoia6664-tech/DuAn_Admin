@@ -96,5 +96,6 @@ public class MainViewController {
         txtPassword.clear();
         lblStatus.setText("");
     }
+
 }
 
