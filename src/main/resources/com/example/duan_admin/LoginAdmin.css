@@ -1,0 +1,128 @@
+.root{
+    -fx-font-family: "Segoe UI";
+}
+
+/* =======================
+      BACKGROUND
+======================= */
+
+.background{
+    -fx-background-color:
+            linear-gradient(to bottom right,
+            #050505,
+            #0b0d12,
+            #050505);
+}
+
+/* =======================
+      LOGIN CARD
+======================= */
+
+.login-card{
+
+    -fx-background-color: rgba(17,19,25,0.95);
+
+    -fx-background-radius: 18;
+
+    -fx-border-color: #202530;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 18;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(255,0,0,0.20),
+            25,
+            0.3,
+            0,
+            0
+    );
+}
+
+/* =======================
+        TEXT
+======================= */
+
+.logo{
+    -fx-text-fill: #ff1e1e;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.title{
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.field-label{
+    -fx-text-fill: #c7c7c7;
+    -fx-font-size: 13px;
+}
+
+.remember{
+    -fx-text-fill: white;
+}
+
+.status{
+    -fx-text-fill: #ff5252;
+    -fx-font-size: 13px;
+}
+
+/* =======================
+        INPUT
+======================= */
+
+.input{
+
+    -fx-background-color: #1b1f29;
+
+    -fx-text-fill: white;
+
+    -fx-prompt-text-fill: #808080;
+
+    -fx-background-radius: 10;
+
+    -fx-border-radius: 10;
+
+    -fx-border-color: #2b3140;
+
+    -fx-pref-height: 42;
+}
+
+.input:focused{
+
+    -fx-border-color: #ff1e1e;
+
+    -fx-border-width: 2;
+}
+
+/* =======================
+      LOGIN BUTTON
+======================= */
+
+.login-button{
+
+    -fx-background-color: #ff1e1e;
+
+    -fx-text-fill: white;
+
+    -fx-font-size: 15px;
+
+    -fx-font-weight: bold;
+
+    -fx-pref-height: 45;
+
+    -fx-pref-width: 250;
+
+    -fx-background-radius: 10;
+
+    -fx-cursor: hand;
+}
+
+.login-button:hover{
+    -fx-background-color: #ff3333;
+}
+
+.login-button:pressed{
+    -fx-background-color: #d40000;
+}

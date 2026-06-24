@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane stylesheets="@Admin.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.duan_admin.LoginAdminController">
+
+    <!-- HEADER -->
+
+    <top>
+        <HBox styleClass="topbar">
+
+            <VBox spacing="3">
+                <Label styleClass="header-title" text="BẢNG ĐIỀU KHIỂN QUẢN TRỊ" />
+
+                <Label styleClass="header-subtitle" text="CINEVERSE ADMIN" />
+            </VBox>
+
+            <Pane HBox.hgrow="ALWAYS" />
+
+            <Label styleClass="admin-label" text="Xin chào Admin" />
+        </HBox>
+    </top>
+
+    <!-- CONTENT -->
+
+    <center>
+
+        <StackPane fx:id="rootPane" styleClass="background">
+
+            <!-- LOGIN -->
+
+            <AnchorPane fx:id="loginPane" visible="false">
+
+                <VBox alignment="CENTER" spacing="18" styleClass="login-card" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+                    <Label styleClass="logo" text="CINEVERSE" />
+
+                    <Label styleClass="login-title" text="ADMIN LOGIN" />
+
+                    <Separator prefWidth="300" />
+
+                    <VBox spacing="8">
+
+                        <Label styleClass="field-label" text="Tên đăng nhập" />
+
+                        <TextField fx:id="txtUsername" promptText="Nhập tên đăng nhập" styleClass="input" />
+                    </VBox>
+
+                    <VBox spacing="8">
+
+                        <Label styleClass="field-label" text="Mật khẩu" />
+
+                        <PasswordField fx:id="txtPassword" promptText="Nhập mật khẩu" styleClass="input" />
+                    </VBox>
+
+                    <CheckBox styleClass="remember" text="Ghi nhớ đăng nhập" />
+
+                    <Button onAction="#login" styleClass="login-button" text="ĐĂNG NHẬP" />
+
+                </VBox>
+
+            </AnchorPane>
+
+            <!-- DASHBOARD -->
+
+            <BorderPane fx:id="dashboardPane" managed="false">
+
+                <left>
+
+                    <VBox spacing="12" styleClass="sidebar">
+
+                        <Button styleClass="menu-btn" text="🎬 Thêm phim" />
+
+                        <Button styleClass="menu-btn" text="🏢 Thêm rạp chiếu" />
+
+                        <Button styleClass="menu-btn" text="🎟 Thêm phòng chiếu" />
+
+                        <Button styleClass="menu-btn" text="🕒 Thêm suất chiếu" />
+
+                        <Button styleClass="menu-btn" text="📱 Quét mã QR" />
+
+                        <Pane VBox.vgrow="ALWAYS" />
+
+                        <Button styleClass="logout-btn" text="Đăng xuất" />
+
+                    </VBox>
+
+                </left>
+
+                <center>
+
+                    <StackPane styleClass="content-pane">
+
+                        <VBox alignment="CENTER" spacing="20">
+
+                            <Label styleClass="panel-title" text="CINEVERSE ADMIN PANEL" />
+
+                            <Label styleClass="panel-subtitle" text="Chọn chức năng ở menu bên trái" />
+
+                        </VBox>
+
+                    </StackPane>
+
+                </center>
+
+            </BorderPane>
+
+        </StackPane>
+
+    </center>
+
+</BorderPane>

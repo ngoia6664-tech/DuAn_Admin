@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane stylesheets="@MainView.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.duan_admin.MainViewController">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox spacing="10" styleClass="sidebar">
+
+            <Label styleClass="logo" text="CINEVERSE ADMIN" />
+
+            <Separator />
+
+            <Button fx:id="btnThemPhim" styleClass="menu-button" text="🎬 Thêm phim" />
+
+            <Button fx:id="btnThemRap" styleClass="menu-button" text="🏢 Thêm rạp chiếu" />
+
+            <Button fx:id="btnThemPhong" styleClass="menu-button" text="🎟 Thêm phòng chiếu" />
+
+            <Button fx:id="btnThemSuat" styleClass="menu-button" text="🕒 Thêm suất chiếu" />
+
+            <Button fx:id="btnQR" styleClass="menu-button" text="📱 Quét mã QR" />
+
+            <Pane VBox.vgrow="ALWAYS" />
+
+            <Button styleClass="logout-button" text="Đăng xuất" />
+
+        </VBox>
+    </left>
+
+    <!-- Top Bar -->
+    <top>
+        <HBox styleClass="topbar">
+
+            <Label styleClass="title" text="BẢNG ĐIỀU KHIỂN QUẢN TRỊ" />
+
+            <Pane HBox.hgrow="ALWAYS" />
+
+            <Label styleClass="admin-name" text="Xin chào Admin" />
+
+        </HBox>
+    </top>
+
+    <!-- Nội dung sẽ load động -->
+    <center>
+        <StackPane fx:id="contentPane" styleClass="content-area">
+
+            <VBox alignment="CENTER" spacing="15">
+
+                <Label styleClass="welcome-title" text="CINEVERSE ADMIN PANEL" />
+
+                <Label styleClass="welcome-subtitle" text="Chọn chức năng ở menu bên trái" />
+
+            </VBox>
+
+        </StackPane>
+    </center>
+
+</BorderPane>
