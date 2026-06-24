@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@LoginAdmin.css">
+
+    <!-- Header -->
+
+    <top>
+        <HBox styleClass="header">
+
+            <Label text="CINEVERSE ADMIN"
+                   styleClass="logo"/>
+
+            <Pane HBox.hgrow="ALWAYS"/>
+
+            <Label text="Hệ thống quản trị rạp chiếu phim"
+                   styleClass="header-text"/>
+
+        </HBox>
+    </top>
+
+    <!-- Nội dung -->
+
+    <center>
+
+        <StackPane styleClass="background">
+
+            <VBox spacing="20"
+                  alignment="CENTER"
+                  styleClass="login-card">
+
+                <Label text="ĐĂNG NHẬP ADMIN"
+                       styleClass="title"/>
+
+                <TextField fx:id="txtUsername"
+                           promptText="Tên đăng nhập"
+                           prefWidth="280"/>
+
+                <PasswordField fx:id="txtPassword"
+                               promptText="Mật khẩu"
+                               prefWidth="280"/>
+
+                <Button text="ĐĂNG NHẬP"
+                        prefWidth="280"
+                        styleClass="login-button"/>
+
+                <Label fx:id="lblMessage"/>
+
+            </VBox>
+
+        </StackPane>
+
+    </center>
+
+</BorderPane>

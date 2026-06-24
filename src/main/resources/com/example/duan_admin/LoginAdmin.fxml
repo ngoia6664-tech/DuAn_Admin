@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.duan_admin.LoginAdminController"
+           stylesheets="@LoginAdmin.css">
+
+    <!-- Background -->
+
+    <Pane styleClass="background"/>
+
+    <!-- Login Card -->
+
+    <VBox alignment="CENTER"
+          spacing="20"
+          styleClass="login-card"
+          maxWidth="420">
+
+        <padding>
+            <Insets top="35" right="35" bottom="35" left="35"/>
+        </padding>
+
+        <Label text="CINEVERSE"
+               styleClass="logo"/>
+
+        <Label text="ADMIN LOGIN"
+               styleClass="title"/>
+
+        <Separator/>
+
+        <VBox spacing="8">
+
+            <Label text="Tên đăng nhập"
+                   styleClass="field-label"/>
+
+            <TextField fx:id="txtUsername"
+                       promptText="Nhập tên đăng nhập"
+                       styleClass="input"/>
+        </VBox>
+
+        <VBox spacing="8">
+
+            <Label text="Mật khẩu"
+                   styleClass="field-label"/>
+
+            <PasswordField fx:id="txtPassword"
+                           promptText="Nhập mật khẩu"
+                           styleClass="input"/>
+        </VBox>
+
+        <CheckBox text="Ghi nhớ đăng nhập"
+                  styleClass="remember"/>
+
+        <Button text="ĐĂNG NHẬP"
+                fx:id="btnLogin"
+                styleClass="login-button"/>
+
+        <Label fx:id="lblStatus"
+               text=""
+               styleClass="status"/>
+
+    </VBox>
+
+</StackPane>
