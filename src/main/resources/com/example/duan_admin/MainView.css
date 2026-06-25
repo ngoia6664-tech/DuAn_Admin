@@ -1,315 +1,89 @@
+/* ==========================================================================
+   CSS DÀNH RIÊNG CHO MAINVIEW (LOGIN CARD & SIDEBAR)
+   ========================================================================== */
 
-/* =====================================================
-   ROOT
-===================================================== */
-
-.root{
-    -fx-font-family: "Segoe UI";
-    -fx-background-color: #050505;
+.background {
+    -fx-background-color: #0b0b14;
 }
 
-/* =====================================================
-   HEADER
-===================================================== */
-
-.topbar{
-
-    -fx-background-color:
-        linear-gradient(to right,
-        #0b0d12,
-        #141824);
-
-    -fx-padding: 15 25;
-
-    -fx-border-color:
-        transparent
-        transparent
-        #232937
-        transparent;
-
-    -fx-border-width: 1;
+/* --- KHUNG CARD ĐĂNG NHẬP --- */
+.login-card {
+    -fx-background-color: #11111e;
+    -fx-border-color: #222235;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 20, 0, 0, 0);
 }
 
-.title{
-
-    -fx-text-fill: white;
-
-    -fx-font-size: 24px;
-
+.logo-text {
+    -fx-font-size: 32px;
     -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to right, #ff5533, #ff2255);
 }
 
-.logoHeader{
-
-    -fx-text-fill: #ff1e1e;
-
-    -fx-font-size: 16px;
-
+.login-title {
+    -fx-font-size: 11px;
     -fx-font-weight: bold;
+    -fx-text-fill: #6c6c83;
 }
 
-.admin-name{
+/* Các ô input riêng của màn đăng nhập */
+.login-card .input {
+    -fx-background-color: #141420;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #4c4c5e;
+    -fx-border-color: #252538;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px;
+}
+.login-card .input:focused {
+    -fx-border-color: #ff5533;
+}
 
-    -fx-text-fill: white;
-
-    -fx-font-size: 15px;
-
+/* Nút bấm đăng nhập */
+.login-card .submit-button {
+    -fx-background-color: linear-gradient(to right, #ff5533, #ff2255);
+    -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
-}
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-.login-card{
-
-    -fx-max-width: 450px;
-
-    -fx-padding: 35px;
-
-    -fx-background-color:
-        rgba(18,22,31,0.95);
-
-    -fx-background-radius: 20px;
-
-    -fx-border-color: #2a3142;
-
-    -fx-border-radius: 20px;
-
-    -fx-border-width: 1.5px;
-
-    -fx-effect:
-        dropshadow(
-            gaussian,
-            rgba(255,0,0,0.30),
-            30,
-            0.2,
-            0,
-            0
-        );
-}
-
-.logoLogin{
-
-    -fx-text-fill: #ff1e1e;
-
-    -fx-font-size: 42px;
-
-    -fx-font-weight: bold;
-}
-
-.loginTitle{
-
-    -fx-text-fill: white;
-
-    -fx-font-size: 22px;
-
-    -fx-font-weight: bold;
-}
-
-.fieldLabel{
-
-    -fx-text-fill: #d0d0d0;
-
-    -fx-font-size: 13px;
-}
-
-.inputField{
-
-    -fx-pref-width: 320px;
-
-    -fx-pref-height: 42px;
-
-    -fx-background-color: #1d2331;
-
-    -fx-background-radius: 10px;
-
-    -fx-border-color: #2f394d;
-
-    -fx-border-radius: 10px;
-
-    -fx-text-fill: white;
-
-    -fx-prompt-text-fill: #808080;
-}
-
-.inputField:focused{
-
-    -fx-border-color: #ff1e1e;
-
-    -fx-border-width: 2px;
-}
-
-.remember{
-
-    -fx-text-fill: white;
-}
-
-.loginButton{
-
-    -fx-pref-width: 320px;
-
-    -fx-pref-height: 45px;
-
-    -fx-background-color: #ff1e1e;
-
-    -fx-background-radius: 10px;
-
-    -fx-text-fill: white;
-
-    -fx-font-size: 15px;
-
-    -fx-font-weight: bold;
-
+    -fx-padding: 12 0;
+    -fx-background-radius: 6px;
     -fx-cursor: hand;
 }
-
-.loginButton:hover{
-
-    -fx-background-color: #ff3a3a;
+.login-card .submit-button:hover {
+    -fx-opacity: 0.9;
 }
 
-.loginButton:pressed{
-
-    -fx-background-color: #d70000;
+.remember-me {
+    -fx-text-fill: #9a9ab0;
+    -fx-font-size: 12px;
 }
 
-.status{
-
-    -fx-text-fill: #ff5252;
-
-    -fx-font-size: 13px;
+/* --- THANH MENU SIDEBAR --- */
+.sidebar {
+    -fx-background-color: #11111e;
+    -fx-border-color: transparent #1c1c28 transparent transparent;
+    -fx-border-width: 1px;
 }
 
-/* =====================================================
-   SIDEBAR
-===================================================== */
-
-.sidebar{
-
-    -fx-background-color: #0d1017;
-
-    -fx-pref-width: 240px;
-
-    -fx-padding: 20px;
-
-    -fx-border-color:
-        transparent
-        #202735
-        transparent
-        transparent;
-}
-
-.logo{
-
-    -fx-text-fill: #ff1e1e;
-
-    -fx-font-size: 22px;
-
-    -fx-font-weight: bold;
-}
-
-/* =====================================================
-   MENU BUTTON
-===================================================== */
-
-.menu-button{
-
-    -fx-pref-width: 190px;
-
-    -fx-pref-height: 45px;
-
-    -fx-background-color: #181e2b;
-
-    -fx-background-radius: 10px;
-
-    -fx-text-fill: white;
-
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #9a9ab0;
+    -fx-alignment: center-left;
+    -fx-padding: 12 15;
     -fx-font-size: 14px;
-
-    -fx-alignment: CENTER_LEFT;
-
     -fx-cursor: hand;
 }
-
-.menu-button:hover{
-
-    -fx-background-color: #ff1e1e;
-
-    -fx-scale-x: 1.03;
-
-    -fx-scale-y: 1.03;
+.menu-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.02);
+    -fx-text-fill: #ffffff;
 }
 
-.menu-button:pressed{
-
-    -fx-scale-x: 0.98;
-
-    -fx-scale-y: 0.98;
-}
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-.logout-button{
-
-    -fx-pref-width: 190px;
-
-    -fx-pref-height: 45px;
-
-    -fx-background-color: #ff1e1e;
-
-    -fx-background-radius: 10px;
-
-    -fx-text-fill: white;
-
-    -fx-font-size: 14px;
-
+/* Hiệu ứng vạch cam chỉ định khi chọn Menu */
+.menu-button.active-tab {
+    -fx-background-color: rgba(255, 85, 51, 0.1);
+    -fx-text-fill: #ff5533;
     -fx-font-weight: bold;
-
-    -fx-cursor: hand;
-}
-
-.logout-button:hover{
-
-    -fx-background-color: #ff3c3c;
-}
-
-/* =====================================================
-   CONTENT
-===================================================== */
-
-.content-area{
-
-    -fx-background-color:
-        linear-gradient(to bottom,
-        #050505,
-        #0e121a);
-}
-
-.welcome-title{
-
-    -fx-text-fill: white;
-
-    -fx-font-size: 34px;
-
-    -fx-font-weight: bold;
-}
-
-.welcome-subtitle{
-
-    -fx-text-fill: #9a9a9a;
-
-    -fx-font-size: 16px;
-    .background{
-
-        -fx-background-color:
-                linear-gradient(
-                        to bottom,
-                        #050505,
-                        #0b0d12,
-                        #050505
-                );
-    }
+    -fx-border-color: transparent transparent transparent #ff5533;
+    -fx-border-width: 0 0 0 4px;
 }
