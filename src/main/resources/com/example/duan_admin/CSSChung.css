@@ -1,0 +1,296 @@
+.form-root {
+    -fx-background-color: #11111d;
+}
+
+.form-scroll {
+    -fx-background-color: #11111d;
+    -fx-fit-to-width: true;
+}
+
+.form-scroll .viewport {
+    -fx-background-color: #11111d;
+}
+
+.form-card {
+    -fx-background-color: #1a1a26;
+    -fx-background-radius: 16px;
+    -fx-border-color: #2b2b3d;
+    -fx-border-radius: 16px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 20, 0, 0, 4);
+}
+
+.form-title {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+    -fx-text-fill: linear-gradient(to right, #ff416c, #ff4b2b);
+}
+
+.form-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #7c7c93;
+}
+
+.form-divider {
+    -fx-border-color: #2b2b3d;
+    -fx-border-width: 1 0 0 0;
+}
+
+.input-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #c1c1d1;
+}
+
+.form-input, .form-textarea, .form-combo, .form-datepicker {
+    -fx-background-color: #222232;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #55556b;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: #32324d;
+    -fx-border-width: 1.5px;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+}
+
+.form-input:focused, .form-textarea:focused, .form-combo:focused, .form-datepicker:focused {
+    -fx-border-color: #ff4b2b;
+    -fx-background-color: #252538;
+}
+
+.form-combo .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #222232;
+}
+
+.btn-primary {
+    -fx-background-color: linear-gradient(to right, #ff416c, #ff4b2b);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 22;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: linear-gradient(to right, #ff4b2b, #ff416c);
+    -fx-effect: dropshadow(three-pass-box, rgba(255,75,43,0.4), 10, 0, 0, 0);
+}
+
+.btn-secondary {
+    -fx-background-color: transparent;
+    -fx-text-fill: #a0a0ba;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 22;
+    -fx-border-color: #42425d;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-border-color: #a0a0ba;
+    -fx-text-fill: white;
+}
+/* ==========================================================================
+   CẤU HÌNH GIAO DIỆN TỐI CHO CÁC FORM NHẬP LIỆU (ADD SHOWROOM, MOVIE...)
+   ========================================================================== */
+
+/* 1. Định dạng chung cho vùng cuộn và nền */
+.background {
+    -fx-background-color: #0b0b14; /* Màu nền tổng thể siêu tối */
+    -fx-background: #0b0b14;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-viewport-background: transparent;
+    -fx-border-color: transparent;
+}
+
+/* 2. Định dạng các tiêu đề chữ (Labels) */
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ff5533; /* Màu cam neon thương hiệu Cineverse */
+}
+
+.subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #8b8b9f; /* Màu chữ phụ xám mờ */
+}
+
+.section-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10 0 5 0;
+}
+
+.field-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #cdcdde; /* Màu chữ nhãn input */
+}
+
+/* 3. Thao tác xử lý các ô nhập liệu (TextField & ComboBox) */
+.input {
+    -fx-background-color: #161623; /* Nền ô nhập liệu tối hơn một tông */
+    -fx-text-fill: #ffffff; /* Chữ gõ vào màu trắng */
+    -fx-prompt-text-fill: #555565; /* Chữ gợi ý mờ */
+    -fx-border-color: #2b2b3d; /* Viền mờ tinh tế */
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px;
+    -fx-font-size: 13px;
+}
+
+.input:focused {
+    -fx-border-color: #ff5533; /* Khi click vào ô sẽ sáng viền cam */
+}
+
+/* Định dạng riêng để lớp ComboBox không bị đè màu mặc định */
+.combo-box .list-cell {
+    -fx-text-fill: #ffffff;
+}
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+.combo-box .arrow {
+    -fx-background-color: #cdcdde; /* Mũi tên màu sáng */
+}
+
+/* 4. Định dạng lại các Nút bấm sinh động */
+.submit-button {
+    -fx-background-color: linear-gradient(to right, #ff5533, #ff3366); /* Nút cam hồng chuyển màu gradient */
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-padding: 10 22;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.submit-button:hover {
+    -fx-opacity: 0.9; /* Hiệu ứng sáng lên khi di chuột vào */
+}
+
+.secondary-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cdcdde;
+    -fx-border-color: #44445c;
+    -fx-border-radius: 6px;
+    -fx-padding: 10 22;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-text-fill: #ffffff;
+}
+
+/* Đường gạch ngang */
+.separator .line {
+    -fx-border-color: #2b2b3d;
+}
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-viewport-background: transparent;
+    -fx-border-color: transparent;
+}
+
+/* --- CHỮ & TIÊU ĐỀ --- */
+.title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to right, #ff5533, #ff8833);
+}
+
+.subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6c6c83;
+}
+
+.section-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10 0 5 0;
+}
+
+.field-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #9a9ab0;
+}
+
+/* --- Ô NHẬP LIỆU (INPUT, TEXTFIELD, COMBOBOX, DATEPICKER) --- */
+.input {
+    -fx-background-color: #141420;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #4c4c5e;
+    -fx-border-color: #252538;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px;
+    -fx-font-size: 13px;
+}
+/* ==========================================================================
+   CSS CHUNG CHO CÁC FORM CON (ADDSHOWROOM, ADDMOVIE, ADDCINEMA...)
+   ========================================================================== */
+
+.background {
+    -fx-background-color: #0b0b14;
+    -fx-background: #0b0b14;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-viewport-background: transparent;
+    -fx-border-color: transparent;
+}
+
+/* Tiêu đề */
+.title { -fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: linear-gradient(to right, #ff5533, #ff2255); }
+.subtitle { -fx-font-size: 13px; -fx-text-fill: #6c6c83; }
+.section-title { -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #ffffff; }
+.field-label { -fx-font-size: 13px; -fx-text-fill: #9a9ab0; }
+
+/* Ô nhập liệu trong form */
+.input {
+    -fx-background-color: #141420;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #4c4c5e;
+    -fx-border-color: #252538;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 10px;
+}
+.input:focused {
+    -fx-border-color: #ff5533;
+}
+
+/* Hệ thống nút trong form */
+.submit-button {
+    -fx-background-color: linear-gradient(to right, #ff5533, #ff2255);
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-padding: 10 24;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+.submit-button:hover { -fx-scale-x: 1.02; -fx-scale-y: 1.02; }
+
+.secondary-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #9a9ab0;
+    -fx-border-color: #32324a;
+    -fx-border-radius: 6px;
+    -fx-padding: 10 24;
+    -fx-cursor: hand;
+}
+.secondary-button:hover { -fx-text-fill: #ffffff; -fx-border-color: #505075; }
