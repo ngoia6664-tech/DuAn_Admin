@@ -58,12 +58,14 @@
                             <Pane HBox.hgrow="ALWAYS"/>
 
                             <Button fx:id="btnExit"
-                                    text="BACK"
-                                    styleClass="secondary-button"/>
+                                    text="Quay lại"
+                                    styleClass="secondary-button"
+                                    onAction="#handleCancel"/>
 
                             <Button fx:id="btnAdd"
-                                    text="ADD SHOW ROOM"
-                                    styleClass="submit-button"/>
+                                    text="Thêm Phòng chiếu"
+                                    styleClass="submit-button"
+                                    onAction="#handleSave"/>
                         </HBox>
 
                     </VBox>

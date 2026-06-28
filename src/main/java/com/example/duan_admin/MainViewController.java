@@ -1,14 +1,15 @@
 package com.example.duan_admin;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 public class MainViewController {
@@ -41,30 +42,73 @@ public class MainViewController {
      */
     @FXML
     private void login() {
+
         String username = txtUsername.getText().trim();
         String password = txtPassword.getText().trim();
 
-        // Kiểm tra tài khoản cứng (Tạm thời test offline không cần database)
-        if ("admin".equals(username) && "123".equals(password)) {
-            lblStatus.setText(""); // Xóa thông báo lỗi cũ nếu có
-
-            // 1. Ẩn màn hình đăng nhập
-            loginPane.setVisible(false);
-            loginPane.setManaged(false);
-
-            // 2. Hiển thị màn hình Dashboard quản trị
-            dashboardPane.setVisible(true);
-            dashboardPane.setManaged(true);
-
-            // 3. Tự động load trang tổng quan (Home) vào vùng nội dung chính
-            hienTrangHome();
-
-            System.out.println("Đăng nhập thành công tài khoản: " + username);
-        } else {
-            // Hiển thị thông báo lỗi lên nhãn trạng thái dưới nút Login
+        // Kiểm tra nhập liệu
+        if (username.isEmpty() || password.isEmpty()) {
             lblStatus.setStyle("-fx-text-fill: #ff4444; -fx-font-weight: bold;");
-            lblStatus.setText("Sai tài khoản hoặc mật khẩu!");
+            lblStatus.setText("Vui lòng nhập đầy đủ tài khoản và mật khẩu!");
+            return;
         }
+
+        // Tạo JSON gửi lên Backend
+        JSONObject body = new JSONObject();
+        body.put("username", username);
+        body.put("password", password);
+
+        HTTPService.sendFullRequestAsync(
+                "POST",
+                "/api/admin/login",
+                null,
+                body.toString(),
+                null
+        ).thenAccept(response -> {
+
+            System.out.println("========== RESPONSE ==========");
+            System.out.println("Status = " + response.statusCode());
+            System.out.println("Body = " + response.body());
+
+            Platform.runLater(() -> {
+
+                if (response.statusCode() == 200) {
+                    JSONObject obj = new JSONObject(response.body());
+                    AdminSession.setAdminId(obj.getLong("id"));
+
+                    lblStatus.setText("");
+
+                    loginPane.setVisible(false);
+                    loginPane.setManaged(false);
+
+                    dashboardPane.setVisible(true);
+                    dashboardPane.setManaged(true);
+
+                    hienTrangHome();
+
+                    System.out.println("Đăng nhập thành công!");
+
+                } else {
+
+                    lblStatus.setStyle("-fx-text-fill: #ff4444; -fx-font-weight: bold;");
+                    lblStatus.setText("Sai tài khoản hoặc mật khẩu!");
+
+                    System.out.println(response.body());
+                }
+
+            });
+
+        }).exceptionally(ex -> {
+
+            Platform.runLater(() -> {
+                lblStatus.setStyle("-fx-text-fill: #ff4444;");
+                lblStatus.setText("Không kết nối được tới Server!");
+            });
+
+            ex.printStackTrace();
+            return null;
+        });
+
     }
 
     /**
@@ -72,14 +116,62 @@ public class MainViewController {
      */
     @FXML
     private void logout() {
-        // Xóa sạch dữ liệu đã nhập ở form login trước đó
-        txtUsername.clear();
-        txtPassword.clear();
-        lblStatus.setText("");
+        // Tạo Alert xác nhận
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Xác nhận đăng xuất");
+        alert.setHeaderText(null);
+        alert.setContentText("Bạn có chắc chắn muốn đăng xuất không?");
 
-        // Quay về giao diện đăng nhập ban đầu
-        showLoginScreen();
-        System.out.println("Đã đăng xuất khỏi hệ thống.");
+        // Tùy chỉnh 2 nút
+        ButtonType btnTiepTuc = new ButtonType("Tiếp tục đăng xuất");
+        ButtonType btnQuayLai = new ButtonType("Quay lại", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(btnTiepTuc, btnQuayLai);
+
+        // Style hộp thoại theo theme Cinema Gold
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle(
+                "-fx-background-color: #13131F;" +
+                        "-fx-border-color: #C9A84C;" +
+                        "-fx-border-width: 1px;" +
+                        "-fx-border-radius: 10px;" +
+                        "-fx-background-radius: 10px;"
+        );
+        dialogPane.lookup(".content.label").setStyle(
+                "-fx-text-fill: #E8E0D0;" +
+                        "-fx-font-size: 14px;"
+        );
+
+        // Style nút bên trong Alert
+        dialogPane.lookupButton(btnTiepTuc).setStyle(
+                "-fx-background-color: #C9A84C;" +
+                        "-fx-text-fill: #0D0D14;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-background-radius: 6px;" +
+                        "-fx-padding: 8 18;" +
+                        "-fx-cursor: hand;"
+        );
+        dialogPane.lookupButton(btnQuayLai).setStyle(
+                "-fx-background-color: transparent;" +
+                        "-fx-text-fill: #6B6B8A;" +
+                        "-fx-border-color: #1E1E30;" +
+                        "-fx-border-radius: 6px;" +
+                        "-fx-background-radius: 6px;" +
+                        "-fx-padding: 8 18;" +
+                        "-fx-cursor: hand;"
+        );
+
+        // Xử lý kết quả
+        alert.showAndWait().ifPresent(result -> {
+            if (result == btnTiepTuc) {
+                AdminSession.clear();
+                txtUsername.clear();
+                txtPassword.clear();
+                lblStatus.setText("");
+                showLoginScreen();
+                System.out.println("Đã đăng xuất khỏi hệ thống.");
+            }
+            // Nếu chọn "Quay lại" thì không làm gì cả
+        });
     }
 
     /**
@@ -125,6 +217,14 @@ public class MainViewController {
     @FXML
     private void quetQR() {
         System.out.println("Chức năng quét QR đầu mục");
+    }
+    @FXML
+    private void moQuanTriDuLieu(){
+        loadView("DataManagementView.fxml");
+    }
+    @FXML
+    private void moQuanLyTaiKhoan(){
+        loadView("AccountManagementView.fxml");
     }
 
     private void loadView(String fxmlPath) {

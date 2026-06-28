@@ -27,8 +27,8 @@
         </VBox>
 
         <HBox spacing="15" alignment="CENTER_RIGHT" styleClass="button-container">
-            <Button text="Hủy" styleClass="btn-secondary" onAction="#handleCancel"/>
-            <Button text="Lưu rạp chiếu" styleClass="btn-primary" onAction="#handleSave"/>
+            <Button text="Quay lại" styleClass="btn-secondary" onAction="#handleCancel"/>
+            <Button text="Thêm rạp chiếu" styleClass="btn-primary" onAction="#handleSave"/>
         </HBox>
     </VBox>
 </StackPane>

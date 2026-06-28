@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.duan_admin.AccountManagementController"
+            stylesheets="@CSSChung.css"
+            styleClass="background">
+
+    <!-- MENU BÊN TRÁI -->
+    <left>
+        <VBox prefWidth="250" spacing="15" styleClass="sidebar">
+            <padding>
+                <Insets top="20" left="15" right="15" bottom="20"/>
+            </padding>
+
+            <!-- Tiêu đề có icon -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <FontIcon iconLiteral="fas-cogs" iconSize="20" styleClass="sidebar-icon"/>
+                <Label text="QUẢN LÝ TÀI KHOẢN" styleClass="sidebar-title"/>
+            </HBox>
+
+            <Separator/>
+
+            <!-- Chuyển Admin/User -->
+            <HBox spacing="0" styleClass="account-switch">
+                <ToggleButton fx:id="btnAdmin"
+                              text=" Admin"
+                              selected="true"
+                              maxWidth="Infinity"
+                              HBox.hgrow="ALWAYS"
+                              styleClass="segment-button"
+                              onAction="#switchToAdmin">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-user-shield" iconSize="16"/>
+                    </graphic>
+                </ToggleButton>
+
+                <ToggleButton fx:id="btnUser"
+                              text=" Người dùng"
+                              maxWidth="Infinity"
+                              HBox.hgrow="ALWAYS"
+                              styleClass="segment-button"
+                              onAction="#switchToUser">
+                    <graphic>
+                        <FontIcon iconLiteral="fas-users" iconSize="16"/>
+                    </graphic>
+                </ToggleButton>
+            </HBox>
+
+            <Separator/>
+
+            <!-- ================= ADMIN MENU ================= -->
+            <VBox fx:id="adminMenu" spacing="8">
+
+                <Button fx:id="btnAccountInfo"
+                        maxWidth="Infinity"
+                        styleClass="menu-button"
+                        onAction="#showAccountInfo">
+                    <graphic>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <FontIcon iconLiteral="fas-id-badge" iconSize="15"/>
+                            <Label text="Thông tin tài khoản"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="btnChangePassword"
+                        maxWidth="Infinity"
+                        styleClass="menu-button"
+                        onAction="#showChangePassword">
+                    <graphic>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <FontIcon iconLiteral="fas-key" iconSize="15"/>
+                            <Label text="Đổi mật khẩu"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+
+            </VBox>
+
+            <!-- ================= USER MENU ================= -->
+            <VBox fx:id="userMenu" spacing="8" visible="false" managed="false">
+
+                <Button fx:id="btnUserList"
+                        maxWidth="Infinity"
+                        styleClass="menu-button"
+                        onAction="#showUserList">
+                    <graphic>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <FontIcon iconLiteral="fas-list-ul" iconSize="15"/>
+                            <Label text="Danh sách người dùng"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+
+            </VBox>
+
+        </VBox>
+    </left>
+
+    <!-- Nội dung chính -->
+    <center>
+        <StackPane fx:id="contentPane" styleClass="content-area"/>
+    </center>
+
+</BorderPane>
