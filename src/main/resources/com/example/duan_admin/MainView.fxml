@@ -68,7 +68,7 @@
 
                         <Label styleClass="sidebar-logo" text="CINEVERSE NAVIGATION" />
                         <Separator styleClass="form-divider" />
-
+                        <Button styleClass="menu-button" text="🏠 Trang chủ" onAction="#moTrangHome"/>
                         <Button styleClass="menu-button" text="Thêm phim" onAction="#moThemPhim"/>
                         <Button styleClass="menu-button" text="Thêm rạp chiếu" onAction="#moThemRap"/>
                         <Button styleClass="menu-button" text="Thêm phòng chiếu" onAction="#moThemPhong"/>

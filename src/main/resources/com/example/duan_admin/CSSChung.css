@@ -96,13 +96,11 @@
     -fx-border-color: #a0a0ba;
     -fx-text-fill: white;
 }
-/* ==========================================================================
-   CẤU HÌNH GIAO DIỆN TỐI CHO CÁC FORM NHẬP LIỆU (ADD SHOWROOM, MOVIE...)
-   ========================================================================== */
 
-/* 1. Định dạng chung cho vùng cuộn và nền */
+/* ========================================================================== */
+
 .background {
-    -fx-background-color: #0b0b14; /* Màu nền tổng thể siêu tối */
+    -fx-background-color: #0b0b14;
     -fx-background: #0b0b14;
 }
 
@@ -113,101 +111,10 @@
     -fx-border-color: transparent;
 }
 
-/* 2. Định dạng các tiêu đề chữ (Labels) */
 .title {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-text-fill: #ff5533; /* Màu cam neon thương hiệu Cineverse */
-}
-
-.subtitle {
-    -fx-font-size: 13px;
-    -fx-text-fill: #8b8b9f; /* Màu chữ phụ xám mờ */
-}
-
-.section-title {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
-    -fx-padding: 10 0 5 0;
-}
-
-.field-label {
-    -fx-font-size: 13px;
-    -fx-text-fill: #cdcdde; /* Màu chữ nhãn input */
-}
-
-/* 3. Thao tác xử lý các ô nhập liệu (TextField & ComboBox) */
-.input {
-    -fx-background-color: #161623; /* Nền ô nhập liệu tối hơn một tông */
-    -fx-text-fill: #ffffff; /* Chữ gõ vào màu trắng */
-    -fx-prompt-text-fill: #555565; /* Chữ gợi ý mờ */
-    -fx-border-color: #2b2b3d; /* Viền mờ tinh tế */
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
-    -fx-padding: 10px;
-    -fx-font-size: 13px;
-}
-
-.input:focused {
-    -fx-border-color: #ff5533; /* Khi click vào ô sẽ sáng viền cam */
-}
-
-/* Định dạng riêng để lớp ComboBox không bị đè màu mặc định */
-.combo-box .list-cell {
-    -fx-text-fill: #ffffff;
-}
-.combo-box .arrow-button {
-    -fx-background-color: transparent;
-}
-.combo-box .arrow {
-    -fx-background-color: #cdcdde; /* Mũi tên màu sáng */
-}
-
-/* 4. Định dạng lại các Nút bấm sinh động */
-.submit-button {
-    -fx-background-color: linear-gradient(to right, #ff5533, #ff3366); /* Nút cam hồng chuyển màu gradient */
-    -fx-text-fill: #ffffff;
-    -fx-font-weight: bold;
-    -fx-padding: 10 22;
-    -fx-background-radius: 6px;
-    -fx-cursor: hand;
-}
-
-.submit-button:hover {
-    -fx-opacity: 0.9; /* Hiệu ứng sáng lên khi di chuột vào */
-}
-
-.secondary-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: #cdcdde;
-    -fx-border-color: #44445c;
-    -fx-border-radius: 6px;
-    -fx-padding: 10 22;
-    -fx-cursor: hand;
-}
-
-.secondary-button:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.05);
-    -fx-text-fill: #ffffff;
-}
-
-/* Đường gạch ngang */
-.separator .line {
-    -fx-border-color: #2b2b3d;
-}
-.scroll-pane {
-    -fx-background-color: transparent;
-    -fx-background: transparent;
-    -fx-viewport-background: transparent;
-    -fx-border-color: transparent;
-}
-
-/* --- CHỮ & TIÊU ĐỀ --- */
-.title {
-    -fx-font-size: 26px;
-    -fx-font-weight: bold;
-    -fx-text-fill: linear-gradient(to right, #ff5533, #ff8833);
+    -fx-text-fill: linear-gradient(to right, #ff5533, #ff2255);
 }
 
 .subtitle {
@@ -227,7 +134,6 @@
     -fx-text-fill: #9a9ab0;
 }
 
-/* --- Ô NHẬP LIỆU (INPUT, TEXTFIELD, COMBOBOX, DATEPICKER) --- */
 .input {
     -fx-background-color: #141420;
     -fx-text-fill: #ffffff;
@@ -238,43 +144,11 @@
     -fx-padding: 10px;
     -fx-font-size: 13px;
 }
-/* ==========================================================================
-   CSS CHUNG CHO CÁC FORM CON (ADDSHOWROOM, ADDMOVIE, ADDCINEMA...)
-   ========================================================================== */
 
-.background {
-    -fx-background-color: #0b0b14;
-    -fx-background: #0b0b14;
-}
-
-.scroll-pane {
-    -fx-background-color: transparent;
-    -fx-background: transparent;
-    -fx-viewport-background: transparent;
-    -fx-border-color: transparent;
-}
-
-/* Tiêu đề */
-.title { -fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: linear-gradient(to right, #ff5533, #ff2255); }
-.subtitle { -fx-font-size: 13px; -fx-text-fill: #6c6c83; }
-.section-title { -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #ffffff; }
-.field-label { -fx-font-size: 13px; -fx-text-fill: #9a9ab0; }
-
-/* Ô nhập liệu trong form */
-.input {
-    -fx-background-color: #141420;
-    -fx-text-fill: #ffffff;
-    -fx-prompt-text-fill: #4c4c5e;
-    -fx-border-color: #252538;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
-    -fx-padding: 10px;
-}
 .input:focused {
     -fx-border-color: #ff5533;
 }
 
-/* Hệ thống nút trong form */
 .submit-button {
     -fx-background-color: linear-gradient(to right, #ff5533, #ff2255);
     -fx-text-fill: #ffffff;
@@ -283,7 +157,11 @@
     -fx-background-radius: 6px;
     -fx-cursor: hand;
 }
-.submit-button:hover { -fx-scale-x: 1.02; -fx-scale-y: 1.02; }
+
+.submit-button:hover {
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
 
 .secondary-button {
     -fx-background-color: transparent;
@@ -293,4 +171,49 @@
     -fx-padding: 10 24;
     -fx-cursor: hand;
 }
-.secondary-button:hover { -fx-text-fill: #ffffff; -fx-border-color: #505075; }
+
+.secondary-button:hover {
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #505075;
+}
+
+.separator .line {
+    -fx-border-color: #2b2b3d;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-background-color: #cdcdde;
+}
+
+/* ========== FIX DROPDOWN COMBOBOX CHỮ ĐEN ========== */
+.combo-box-popup .list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: #ffffff;  /* Nền trắng */
+    -fx-text-fill: #000000;         /* Chữ đen */
+    -fx-font-size: 13px;
+    -fx-padding: 8px 12px;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-background-color: #f0f0f0; /* Hover xám nhạt */
+    -fx-text-fill: #000000;        /* Chữ vẫn đen */
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: #ff5533; /* Selected màu cam thương hiệu */
+    -fx-text-fill: #ffffff;        /* Chữ trắng khi selected */
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected:hover {
+    -fx-background-color: #ff3311;
+    -fx-text-fill: #ffffff;
+}

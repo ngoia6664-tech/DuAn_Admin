@@ -1,7 +1,10 @@
 package com.example.duan_admin;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+
+import java.util.Map;
 
 public class AddCinemaController {
 
@@ -10,6 +13,7 @@ public class AddCinemaController {
 
     @FXML
     private void handleSave() {
+
         // Tạm thời in ra màn hình console kiểm tra dữ liệu nhập
         System.out.println("Tạm lưu rạp: " + txtName.getText() + " - Địa chỉ: " + txtAddress.getText());
 

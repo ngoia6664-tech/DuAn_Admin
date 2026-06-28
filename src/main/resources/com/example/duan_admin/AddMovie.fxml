@@ -50,6 +50,15 @@
                     </VBox>
 
                     <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2">
+                        <Label text="Hình ảnh Poster *" styleClass="input-label"/>
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <TextField fx:id="txtImageUrl" promptText="Dán link URL ảnh hoặc chọn file từ máy..." styleClass="form-input" HBox.hgrow="ALWAYS"/>
+                            <Button text="Chọn file" styleClass="btn-secondary" onAction="#handleSelectImage"/>
+                        </HBox>
+                        <Label fx:id="lblFileName" text="Chưa chọn file cục bộ" style="-fx-font-style: italic; -fx-text-fill: #7f8c8d; -fx-font-size: 12px;"/>
+                    </VBox>
+
+                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2">
                         <Label text="Mô tả nội dung *" styleClass="input-label"/>
                         <TextArea fx:id="txtDescription" prefHeight="100" promptText="Tóm tắt nội dung phim ngắn gọn..." styleClass="form-textarea" wrapText="true"/>
                     </VBox>
