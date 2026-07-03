@@ -1,89 +1,167 @@
 /* ==========================================================================
-   CSS DÀNH RIÊNG CHO MAINVIEW (LOGIN CARD & SIDEBAR)
+   MAINVIEW — Cinema Gold Theme (Login Card & Sidebar)
    ========================================================================== */
 
+/* ── Nền tổng thể ── */
 .background {
-    -fx-background-color: #0b0b14;
+    -fx-background-color: #0D0D14;
 }
 
-/* --- KHUNG CARD ĐĂNG NHẬP --- */
+/* ── CARD ĐĂNG NHẬP ── */
 .login-card {
-    -fx-background-color: #11111e;
-    -fx-border-color: #222235;
-    -fx-border-radius: 12px;
-    -fx-background-radius: 12px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 20, 0, 0, 0);
+    -fx-background-color: #13131F;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 14px;
+    -fx-background-radius: 14px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 24, 0, 0, 6);
 }
 
 .logo-text {
     -fx-font-size: 32px;
     -fx-font-weight: bold;
-    -fx-text-fill: linear-gradient(to right, #ff5533, #ff2255);
+    -fx-text-fill: #C9A84C;
 }
 
 .login-title {
     -fx-font-size: 11px;
     -fx-font-weight: bold;
-    -fx-text-fill: #6c6c83;
+    -fx-text-fill: #6B6B8A;
+    -fx-letter-spacing: 2px;
 }
 
-/* Các ô input riêng của màn đăng nhập */
 .login-card .input {
-    -fx-background-color: #141420;
-    -fx-text-fill: #ffffff;
-    -fx-prompt-text-fill: #4c4c5e;
-    -fx-border-color: #252538;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
+    -fx-background-color: #0D0D14;
+    -fx-text-fill: #E8E0D0;
+    -fx-prompt-text-fill: #3A3A52;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
     -fx-padding: 10px;
-}
-.login-card .input:focused {
-    -fx-border-color: #ff5533;
+    -fx-font-size: 13px;
 }
 
-/* Nút bấm đăng nhập */
+.login-card .input:focused {
+    -fx-border-color: #C9A84C;
+    -fx-background-color: #111120;
+}
+
 .login-card .submit-button {
-    -fx-background-color: linear-gradient(to right, #ff5533, #ff2255);
-    -fx-text-fill: #ffffff;
+    -fx-background-color: #C9A84C;
+    -fx-text-fill: #0D0D14;
     -fx-font-weight: bold;
+    -fx-font-size: 14px;
     -fx-padding: 12 0;
-    -fx-background-radius: 6px;
+    -fx-background-radius: 7px;
     -fx-cursor: hand;
 }
+
 .login-card .submit-button:hover {
-    -fx-opacity: 0.9;
+    -fx-background-color: #D4B86A;
+    -fx-effect: dropshadow(three-pass-box, rgba(201,168,76,0.35), 12, 0, 0, 0);
+}
+
+.login-card .submit-button:pressed {
+    -fx-background-color: #A8893A;
 }
 
 .remember-me {
-    -fx-text-fill: #9a9ab0;
+    -fx-text-fill: #6B6B8A;
     -fx-font-size: 12px;
 }
 
-/* --- THANH MENU SIDEBAR --- */
+/* ── SIDEBAR ── */
 .sidebar {
-    -fx-background-color: #11111e;
-    -fx-border-color: transparent #1c1c28 transparent transparent;
+    -fx-background-color: #0D0D14;
+    -fx-border-color: transparent #1A1A2E transparent transparent;
     -fx-border-width: 1px;
 }
 
+.sidebar-title {
+    -fx-text-fill: #E8E0D0;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-subtitle {
+    -fx-text-fill: #6B6B8A;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-divider {
+    -fx-background-color: #1A1A2E;
+    -fx-padding: 6 0 6 0;
+}
+
+/* ── MENU BUTTON ── */
 .menu-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #9a9ab0;
+    -fx-text-fill: #6B6B8A;
     -fx-alignment: center-left;
     -fx-padding: 12 15;
     -fx-font-size: 14px;
     -fx-cursor: hand;
-}
-.menu-button:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.02);
-    -fx-text-fill: #ffffff;
+    -fx-background-radius: 7px;
 }
 
-/* Hiệu ứng vạch cam chỉ định khi chọn Menu */
+.menu-button:hover {
+    -fx-background-color: rgba(201, 168, 76, 0.07);
+    -fx-text-fill: #E8E0D0;
+}
+
 .menu-button.active-tab {
-    -fx-background-color: rgba(255, 85, 51, 0.1);
-    -fx-text-fill: #ff5533;
+    -fx-background-color: rgba(201, 168, 76, 0.12);
+    -fx-text-fill: #C9A84C;
     -fx-font-weight: bold;
-    -fx-border-color: transparent transparent transparent #ff5533;
-    -fx-border-width: 0 0 0 4px;
+    -fx-border-color: transparent transparent transparent #C9A84C;
+    -fx-border-width: 0 0 0 3px;
+}
+
+/* ── ICON MÀU ── */
+.menu-icon {
+    -fx-icon-color: #6B6B8A;
+}
+
+.menu-button:hover .menu-icon {
+    -fx-icon-color: #E8E0D0;
+}
+
+.menu-button.active-tab .menu-icon {
+    -fx-icon-color: #C9A84C;
+}
+
+/* ── NÚT ĐĂNG XUẤT ── */
+.logout-button {
+    -fx-background-color: #1A1A2E;
+    -fx-text-fill: #C9A84C;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: #C9A84C;
+    -fx-border-width: 1px;
+    -fx-pref-height: 42px;
+    -fx-cursor: hand;
+    -fx-alignment: CENTER;
+}
+
+.logout-button:hover {
+    -fx-background-color: rgba(201, 168, 76, 0.15);
+    -fx-effect: dropshadow(gaussian, rgba(201,168,76,0.3), 14, 0.3, 0, 3);
+}
+
+.logout-button:pressed {
+    -fx-background-color: rgba(201, 168, 76, 0.25);
+}
+/* Icon sidebar sáng lên */
+.menu-button .ikonli-font-icon {
+    -fx-icon-color: #6B6B8A;
+}
+
+.menu-button:hover .ikonli-font-icon {
+    -fx-icon-color: #E8E0D0;
+}
+
+.menu-button.active-tab .ikonli-font-icon {
+    -fx-icon-color: #C9A84C;
 }

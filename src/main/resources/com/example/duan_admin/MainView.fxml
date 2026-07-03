@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <BorderPane stylesheets="@MainView.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.duan_admin.MainViewController">
 
@@ -56,28 +57,61 @@
                     </VBox>
                 </StackPane>
             </AnchorPane>
-            <BorderPane fx:id="dashboardPane" visible="true" managed="true">
 
+            <BorderPane fx:id="dashboardPane" visible="true" managed="true">
                 <left>
                     <VBox fx:id="sidebarPane"
-                          spacing="10"
+                          spacing="15"
                           prefWidth="240"
                           minWidth="240"
                           maxWidth="240"
                           styleClass="sidebar">
 
-                        <Label styleClass="sidebar-logo" text="CINEVERSE NAVIGATION" />
-                        <Separator styleClass="form-divider" />
-                        <Button styleClass="menu-button" text="🏠 Trang chủ" onAction="#moTrangHome"/>
-                        <Button styleClass="menu-button" text="Thêm phim" onAction="#moThemPhim"/>
-                        <Button styleClass="menu-button" text="Thêm rạp chiếu" onAction="#moThemRap"/>
-                        <Button styleClass="menu-button" text="Thêm phòng chiếu" onAction="#moThemPhong"/>
-                        <Button styleClass="menu-button" text="Thêm suất chiếu" onAction="#moThemSuat"/>
-                        <Button styleClass="menu-button" text="Quét mã QR" onAction="#quetQR" />
+                        <padding>
+                            <Insets top="20" bottom="20" left="10" right="10" />
+                        </padding>
 
-                        <Pane VBox.vgrow="ALWAYS" />
+                        <VBox alignment="CENTER" spacing="5" style="-fx-padding: 10 0 10 0;">
+                            <FontIcon iconLiteral="fas-film"
+                                      iconSize="40"
+                                      iconColor="white"
+                                      styleClass="sidebar-logo-icon"/>
+                            <Label text="CINEVERSE" styleClass="sidebar-title"/>
+                            <Label text="Admin Dashboard" styleClass="sidebar-subtitle"/>
+                        </VBox>
 
-                        <Button onAction="#logout" styleClass="logout-button" text="Đăng xuất" />
+                        <Separator styleClass="sidebar-divider"/>
+
+                        <VBox spacing="5" VBox.vgrow="ALWAYS">
+                            <Button styleClass="menu-button" text="Thêm phim" maxWidth="Infinity" onAction="#moThemPhim">
+                                <graphic><FontIcon iconLiteral="fas-film" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                            <Button styleClass="menu-button" text="Thêm rạp chiếu" maxWidth="Infinity" onAction="#moThemRap">
+                                <graphic><FontIcon iconLiteral="fas-building" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                            <Button styleClass="menu-button" text="Thêm phòng chiếu" maxWidth="Infinity" onAction="#moThemPhong">
+                                <graphic><FontIcon iconLiteral="fas-door-open" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                            <Button styleClass="menu-button" text="Thêm suất chiếu" maxWidth="Infinity" onAction="#moThemSuat">
+                                <graphic><FontIcon iconLiteral="fas-clock" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                            <Button styleClass="menu-button" text="Quét mã QR" maxWidth="Infinity" onAction="#quetQR">
+                                <graphic><FontIcon iconLiteral="fas-qrcode" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                            <Button styleClass="menu-button" text="Quản trị dữ liệu" maxWidth="Infinity" onAction="#moQuanTriDuLieu">
+                                <graphic><FontIcon iconLiteral="fas-database" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                            <Button styleClass="menu-button" text="Quản lý tài khoản" maxWidth="Infinity" onAction="#moQuanLyTaiKhoan">
+                                <graphic><FontIcon iconLiteral="fas-user-shield" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                        </VBox>
+
+                        <Separator styleClass="sidebar-divider"/>
+                        <Button fx:id="btnLogout"
+                                text="Đăng xuất"
+                                maxWidth="Infinity"
+                                onAction="#logout"
+                                styleClass="logout-button"/>
                     </VBox>
                 </left>
 
@@ -85,7 +119,6 @@
                     <StackPane fx:id="contentPane" styleClass="content-area">
                     </StackPane>
                 </center>
-
             </BorderPane>
 
         </StackPane>

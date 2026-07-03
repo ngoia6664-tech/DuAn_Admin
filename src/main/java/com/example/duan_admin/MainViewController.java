@@ -1,20 +1,22 @@
 package com.example.duan_admin;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 public class MainViewController {
 
     @FXML private StackPane contentPane;
 
+    // Khai báo chính xác các FX:ID từ file FXML để điều khiển ẩn/hiện chuyển đổi giao diện
     @FXML private AnchorPane loginPane;
     @FXML private BorderPane dashboardPane;
     @FXML private TextField txtUsername;
@@ -23,9 +25,6 @@ public class MainViewController {
 
     private static MainViewController instance;
 
-    // ĐÃ ĐỔI: Sử dụng chính xác HomeController (Trang quản lý doanh số)
-    private HomeController homeController;
-
     public static MainViewController getInstance() {
         return instance;
     }
@@ -33,85 +32,167 @@ public class MainViewController {
     @FXML
     public void initialize() {
         instance = this;
+
+        // Mặc định ban đầu: Bắt người dùng đăng nhập trước (Hiện Login, Ẩn Dashboard)
         showLoginScreen();
     }
 
     /**
-     * Dành cho HomeController tự đăng ký thực thể của nó với hệ thống điều hướng chính
+     * Sự kiện khi nhấn nút ĐĂNG NHẬP
      */
-    public void setHomeController(HomeController controller) {
-        this.homeController = controller;
-    }
-
     @FXML
     private void login() {
+
         String username = txtUsername.getText().trim();
         String password = txtPassword.getText().trim();
 
-        if ("admin".equals(username) && "123".equals(password)) {
-            lblStatus.setText("");
-
-            loginPane.setVisible(false);
-            loginPane.setManaged(false);
-
-            dashboardPane.setVisible(true);
-            dashboardPane.setManaged(true);
-
-            // Đăng nhập xong -> Vào thẳng trang doanh số tổng quan
-            hienTrangHome();
-
-            System.out.println("Đăng nhập thành công tài khoản: " + username);
-        } else {
+        // Kiểm tra nhập liệu
+        if (username.isEmpty() || password.isEmpty()) {
             lblStatus.setStyle("-fx-text-fill: #ff4444; -fx-font-weight: bold;");
-            lblStatus.setText("Sai tài khoản hoặc mật khẩu!");
+            lblStatus.setText("Vui lòng nhập đầy đủ tài khoản và mật khẩu!");
+            return;
         }
+
+        // Tạo JSON gửi lên Backend
+        JSONObject body = new JSONObject();
+        body.put("username", username);
+        body.put("password", password);
+
+        HTTPService.sendFullRequestAsync(
+                "POST",
+                "/api/admin/login",
+                null,
+                body.toString(),
+                null
+        ).thenAccept(response -> {
+
+            System.out.println("========== RESPONSE ==========");
+            System.out.println("Status = " + response.statusCode());
+            System.out.println("Body = " + response.body());
+
+            Platform.runLater(() -> {
+
+                if (response.statusCode() == 200) {
+                    JSONObject obj = new JSONObject(response.body());
+                    AdminSession.setAdminId(obj.getLong("id"));
+
+                    lblStatus.setText("");
+
+                    loginPane.setVisible(false);
+                    loginPane.setManaged(false);
+
+                    dashboardPane.setVisible(true);
+                    dashboardPane.setManaged(true);
+
+                    hienTrangHome();
+
+                    System.out.println("Đăng nhập thành công!");
+
+                } else {
+
+                    lblStatus.setStyle("-fx-text-fill: #ff4444; -fx-font-weight: bold;");
+                    lblStatus.setText("Sai tài khoản hoặc mật khẩu!");
+
+                    System.out.println(response.body());
+                }
+
+            });
+
+        }).exceptionally(ex -> {
+
+            Platform.runLater(() -> {
+                lblStatus.setStyle("-fx-text-fill: #ff4444;");
+                lblStatus.setText("Không kết nối được tới Server!");
+            });
+
+            ex.printStackTrace();
+            return null;
+        });
+
     }
 
+    /**
+     * Sự kiện khi nhấn nút ĐĂNG XUẤT ở góc dưới Sidebar
+     */
     @FXML
     private void logout() {
-        txtUsername.clear();
-        txtPassword.clear();
-        lblStatus.setText("");
+        // Tạo Alert xác nhận
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Xác nhận đăng xuất");
+        alert.setHeaderText(null);
+        alert.setContentText("Bạn có chắc chắn muốn đăng xuất không?");
 
-        // Giải phóng reference khi đăng xuất để giải phóng bộ nhớ
-        this.homeController = null;
+        // Tùy chỉnh 2 nút
+        ButtonType btnTiepTuc = new ButtonType("Tiếp tục đăng xuất");
+        ButtonType btnQuayLai = new ButtonType("Quay lại", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(btnTiepTuc, btnQuayLai);
 
-        showLoginScreen();
-        System.out.println("Đã đăng xuất khỏi hệ thống.");
+        // Style hộp thoại theo theme Cinema Gold
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.setStyle(
+                "-fx-background-color: #13131F;" +
+                        "-fx-border-color: #C9A84C;" +
+                        "-fx-border-width: 1px;" +
+                        "-fx-border-radius: 10px;" +
+                        "-fx-background-radius: 10px;"
+        );
+        dialogPane.lookup(".content.label").setStyle(
+                "-fx-text-fill: #E8E0D0;" +
+                        "-fx-font-size: 14px;"
+        );
+
+        // Style nút bên trong Alert
+        dialogPane.lookupButton(btnTiepTuc).setStyle(
+                "-fx-background-color: #C9A84C;" +
+                        "-fx-text-fill: #0D0D14;" +
+                        "-fx-font-weight: bold;" +
+                        "-fx-background-radius: 6px;" +
+                        "-fx-padding: 8 18;" +
+                        "-fx-cursor: hand;"
+        );
+        dialogPane.lookupButton(btnQuayLai).setStyle(
+                "-fx-background-color: transparent;" +
+                        "-fx-text-fill: #6B6B8A;" +
+                        "-fx-border-color: #1E1E30;" +
+                        "-fx-border-radius: 6px;" +
+                        "-fx-background-radius: 6px;" +
+                        "-fx-padding: 8 18;" +
+                        "-fx-cursor: hand;"
+        );
+
+        // Xử lý kết quả
+        alert.showAndWait().ifPresent(result -> {
+            if (result == btnTiepTuc) {
+                AdminSession.clear();
+                txtUsername.clear();
+                txtPassword.clear();
+                lblStatus.setText("");
+                showLoginScreen();
+                System.out.println("Đã đăng xuất khỏi hệ thống.");
+            }
+            // Nếu chọn "Quay lại" thì không làm gì cả
+        });
     }
 
+    /**
+     * Hàm hỗ trợ chuyển đổi nhanh về trạng thái màn hình Đăng nhập
+     */
     private void showLoginScreen() {
+        // Hiện màn hình Login
         loginPane.setVisible(true);
         loginPane.setManaged(true);
 
+        // Ẩn màn hình Dashboard quản trị
         dashboardPane.setVisible(false);
         dashboardPane.setManaged(false);
     }
 
-    // --- CÁC HÀM ĐIỀU HƯỚNG GIAO DIỆN (TABS) ---
+    // --- CÁC HÀM CHUYỂN TAB CŨ GIỮ NGUYÊN KHÔNG ĐỔI ---
 
     public void hienTrangHome() {
-        try {
-            contentPane.getChildren().clear();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-            Parent view = loader.load();
-
-            // Nhận thực thể HomeController (Dashboard doanh số)
-            this.homeController = loader.getController();
-
-            contentPane.getChildren().add(view);
-
-            // BỔ SUNG QUAN TRỌNG: Mỗi lần chuyển tab về Home, bắt nó chạy hàm load lại doanh thu, số vé...
-            if (this.homeController != null) {
-                // Giả sử sau này bạn viết hàm này bên HomeController để gọi API lấy doanh số
-                // this.homeController.loadThongKeTongQuan();
-            }
-
-        } catch (IOException e) {
-            System.err.println("Không thể tải file FXML trang chủ: Home.fxml");
-            e.printStackTrace();
-        }
+        loadView("Home.fxml");
     }
+
 
     @FXML
     private void moThemPhim() {
@@ -132,9 +213,20 @@ public class MainViewController {
     private void moThemSuat() {
         loadView("AddShowTime.fxml");
     }
-;
+
     @FXML
-    private void quetQR() {loadView("QRScanner.fxml");}
+    private void quetQR() {
+        loadView("QRScanner.fxml"); // 👈 Đổi từ println thành loadView
+    }
+    @FXML
+    private void moQuanTriDuLieu(){
+        loadView("DataManagementView.fxml");
+    }
+    @FXML
+    private void moQuanLyTaiKhoan(){
+        loadView("AccountManagementView.fxml");
+    }
+
     private void loadView(String fxmlPath) {
         try {
             contentPane.getChildren().clear();
@@ -144,9 +236,5 @@ public class MainViewController {
             System.err.println("Không thể tải file FXML: " + fxmlPath);
             e.printStackTrace();
         }
-    }
-    @FXML
-    private void moTrangHome() {
-        hienTrangHome();
     }
 }

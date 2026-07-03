@@ -9,6 +9,10 @@ module com.example.duan_admin {
     requires com.google.zxing;
     requires opencv;
     requires java.desktop;
+    requires com.google.gson;
+    requires org.json;
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.fontawesome6;
 
 
     opens com.example.duan_admin to javafx.fxml;

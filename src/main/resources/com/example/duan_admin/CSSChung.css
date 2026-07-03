@@ -1,107 +1,11 @@
-.form-root {
-    -fx-background-color: #11111d;
-}
+/* ==========================================================================
+   CSS CHUNG — Cinema Gold Theme
+   ========================================================================== */
 
-.form-scroll {
-    -fx-background-color: #11111d;
-    -fx-fit-to-width: true;
-}
-
-.form-scroll .viewport {
-    -fx-background-color: #11111d;
-}
-
-.form-card {
-    -fx-background-color: #1a1a26;
-    -fx-background-radius: 16px;
-    -fx-border-color: #2b2b3d;
-    -fx-border-radius: 16px;
-    -fx-border-width: 1px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 20, 0, 0, 4);
-}
-
-.form-title {
-    -fx-font-family: "Segoe UI", "Helvetica Neue", sans-serif;
-    -fx-font-size: 22px;
-    -fx-font-weight: 900;
-    -fx-text-fill: linear-gradient(to right, #ff416c, #ff4b2b);
-}
-
-.form-subtitle {
-    -fx-font-size: 13px;
-    -fx-text-fill: #7c7c93;
-}
-
-.form-divider {
-    -fx-border-color: #2b2b3d;
-    -fx-border-width: 1 0 0 0;
-}
-
-.input-label {
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #c1c1d1;
-}
-
-.form-input, .form-textarea, .form-combo, .form-datepicker {
-    -fx-background-color: #222232;
-    -fx-text-fill: #ffffff;
-    -fx-prompt-text-fill: #55556b;
-    -fx-background-radius: 8px;
-    -fx-border-radius: 8px;
-    -fx-border-color: #32324d;
-    -fx-border-width: 1.5px;
-    -fx-padding: 10px;
-    -fx-font-size: 14px;
-}
-
-.form-input:focused, .form-textarea:focused, .form-combo:focused, .form-datepicker:focused {
-    -fx-border-color: #ff4b2b;
-    -fx-background-color: #252538;
-}
-
-.form-combo .list-cell {
-    -fx-text-fill: white;
-    -fx-background-color: #222232;
-}
-
-.btn-primary {
-    -fx-background-color: linear-gradient(to right, #ff416c, #ff4b2b);
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-padding: 10 22;
-    -fx-background-radius: 8px;
-    -fx-cursor: hand;
-}
-
-.btn-primary:hover {
-    -fx-background-color: linear-gradient(to right, #ff4b2b, #ff416c);
-    -fx-effect: dropshadow(three-pass-box, rgba(255,75,43,0.4), 10, 0, 0, 0);
-}
-
-.btn-secondary {
-    -fx-background-color: transparent;
-    -fx-text-fill: #a0a0ba;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-padding: 10 22;
-    -fx-border-color: #42425d;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-cursor: hand;
-}
-
-.btn-secondary:hover {
-    -fx-border-color: #a0a0ba;
-    -fx-text-fill: white;
-}
-
-/* ========================================================================== */
-
+/* ── NỀN & SCROLL ── */
 .background {
-    -fx-background-color: #0b0b14;
-    -fx-background: #0b0b14;
+    -fx-background-color: #0D0D14;
+    -fx-background: #0D0D14;
 }
 
 .scroll-pane {
@@ -111,109 +15,399 @@
     -fx-border-color: transparent;
 }
 
-.title {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-    -fx-text-fill: linear-gradient(to right, #ff5533, #ff2255);
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
 }
 
-.subtitle {
-    -fx-font-size: 13px;
-    -fx-text-fill: #6c6c83;
+/* ── FORM CARD ── */
+.form-root {
+    -fx-background-color: #0D0D14;
+}
+
+.form-card {
+    -fx-background-color: #13131F;
+    -fx-background-radius: 14px;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 14px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.45), 20, 0, 0, 4);
+}
+
+/* ── CHỮ & TIÊU ĐỀ ── */
+.page-title, .title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #E8E0D0;
+}
+
+.header-text {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #C9A84C;
 }
 
 .section-title {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
-    -fx-padding: 10 0 5 0;
+    -fx-text-fill: #E8E0D0;
+    -fx-padding: 8 0 4 0;
 }
 
-.field-label {
+.subtitle, .form-subtitle {
     -fx-font-size: 13px;
-    -fx-text-fill: #9a9ab0;
+    -fx-text-fill: #6B6B8A;
 }
 
-.input {
-    -fx-background-color: #141420;
-    -fx-text-fill: #ffffff;
-    -fx-prompt-text-fill: #4c4c5e;
-    -fx-border-color: #252538;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
+.field-label, .input-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #A09898;
+}
+
+/* ── Ô NHẬP LIỆU ── */
+.input, .form-input, .form-textarea, .form-combo, .form-datepicker {
+    -fx-background-color: #0D0D14;
+    -fx-text-fill: #E8E0D0;
+    -fx-prompt-text-fill: #3A3A52;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
     -fx-padding: 10px;
     -fx-font-size: 13px;
 }
 
-.input:focused {
-    -fx-border-color: #ff5533;
+.input:focused,
+.form-input:focused,
+.form-textarea:focused,
+.form-combo:focused {
+    -fx-border-color: #C9A84C;
+    -fx-background-color: #111120;
 }
 
-.submit-button {
-    -fx-background-color: linear-gradient(to right, #ff5533, #ff2255);
-    -fx-text-fill: #ffffff;
+.input-readonly {
+    -fx-background-color: #13131F;
+    -fx-text-fill: #E8E0D0;
+    -fx-prompt-text-fill: #3A3A52;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-highlight-fill: transparent;
+    -fx-highlight-text-fill: #E8E0D0;
+}
+
+/* ComboBox */
+.combo-box .list-cell,
+.form-combo .list-cell {
+    -fx-text-fill: #E8E0D0;
+    -fx-background-color: #13131F;
+}
+.combo-box .arrow-button { -fx-background-color: transparent; }
+.combo-box .arrow { -fx-background-color: #C9A84C; }
+
+/* ── NÚT BẤM ── */
+.submit-button, .btn-primary {
+    -fx-background-color: #C9A84C;
+    -fx-text-fill: #0D0D14;
     -fx-font-weight: bold;
+    -fx-font-size: 14px;
     -fx-padding: 10 24;
-    -fx-background-radius: 6px;
+    -fx-background-radius: 7px;
     -fx-cursor: hand;
 }
 
-.submit-button:hover {
+.submit-button:hover, .btn-primary:hover {
+    -fx-background-color: #D4B86A;
+    -fx-effect: dropshadow(three-pass-box, rgba(201,168,76,0.35), 12, 0, 0, 0);
     -fx-scale-x: 1.02;
     -fx-scale-y: 1.02;
 }
 
-.secondary-button {
+.submit-button:pressed, .btn-primary:pressed {
+    -fx-background-color: #A8893A;
+}
+
+.secondary-button, .btn-secondary, .nav-button, .nav-link-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #9a9ab0;
-    -fx-border-color: #32324a;
-    -fx-border-radius: 6px;
+    -fx-text-fill: #6B6B8A;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
     -fx-padding: 10 24;
     -fx-cursor: hand;
+    -fx-font-size: 13px;
 }
 
-.secondary-button:hover {
-    -fx-text-fill: #ffffff;
-    -fx-border-color: #505075;
+.secondary-button:hover, .btn-secondary:hover,
+.nav-button:hover, .nav-link-button:hover {
+    -fx-text-fill: #E8E0D0;
+    -fx-border-color: #C9A84C;
+    -fx-background-color: rgba(201, 168, 76, 0.07);
 }
 
-.separator .line {
-    -fx-border-color: #2b2b3d;
-}
-
-.combo-box .arrow-button {
-    -fx-background-color: transparent;
-}
-
-.combo-box .arrow {
-    -fx-background-color: #cdcdde;
-}
-
-/* ========== FIX DROPDOWN COMBOBOX CHỮ ĐEN ========== */
-.combo-box-popup .list-view {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #cccccc;
+/* ── SIDEBAR (dùng trong AccountManagement) ── */
+.sidebar {
+    -fx-background-color: #0D0D14;
+    -fx-border-color: transparent #1A1A2E transparent transparent;
     -fx-border-width: 1px;
 }
 
-.combo-box-popup .list-view .list-cell {
-    -fx-background-color: #ffffff;  /* Nền trắng */
-    -fx-text-fill: #000000;         /* Chữ đen */
+.sidebar-title {
+    -fx-text-fill: #E8E0D0;
     -fx-font-size: 13px;
-    -fx-padding: 8px 12px;
+    -fx-font-weight: bold;
 }
 
-.combo-box-popup .list-view .list-cell:filled:hover {
-    -fx-background-color: #f0f0f0; /* Hover xám nhạt */
-    -fx-text-fill: #000000;        /* Chữ vẫn đen */
+.sidebar-icon { -fx-icon-color: #C9A84C; }
+.field-icon   { -fx-icon-color: #6B6B8A; }
+.header-icon  { -fx-icon-color: #C9A84C; }
+
+/* ── MENU BUTTON (segment trong AccountManagement) ── */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #6B6B8A;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
 }
 
-.combo-box-popup .list-view .list-cell:filled:selected {
-    -fx-background-color: #ff5533; /* Selected màu cam thương hiệu */
-    -fx-text-fill: #ffffff;        /* Chữ trắng khi selected */
+.menu-button:hover {
+    -fx-background-color: rgba(201, 168, 76, 0.07);
+    -fx-text-fill: #E8E0D0;
+    -fx-border-color: #C9A84C;
 }
 
-.combo-box-popup .list-view .list-cell:filled:selected:hover {
-    -fx-background-color: #ff3311;
-    -fx-text-fill: #ffffff;
+.menu-button:selected {
+    -fx-background-color: #C9A84C;
+    -fx-text-fill: #0D0D14;
+    -fx-border-color: transparent;
+    -fx-font-weight: bold;
+}
+
+/* Segment toggle (Admin / User switch) */
+.segment-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #6B6B8A;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 0;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+
+.segment-button:selected {
+    -fx-background-color: rgba(201, 168, 76, 0.15);
+    -fx-text-fill: #C9A84C;
+    -fx-font-weight: bold;
+    -fx-border-color: #C9A84C;
+}
+
+/* ── TABLEVIEW ── */
+.table-view {
+    -fx-background-color: #0D0D14;
+    -fx-border-color: #1E1E30;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #13131F;
+    -fx-background-radius: 10px 10px 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent #1E1E30 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-size: 40px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #C9A84C;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER;
+}
+
+.table-row-cell {
+    -fx-background-color: #0D0D14;
+    -fx-border-color: transparent transparent #1A1A2E transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-row-cell:odd  { -fx-background-color: #0F0F1A; }
+.table-row-cell:even { -fx-background-color: #0D0D14; }
+
+.table-row-cell:hover {
+    -fx-background-color: rgba(201, 168, 76, 0.06);
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgba(201, 168, 76, 0.12);
+    -fx-border-color: #C9A84C;
+    -fx-border-width: 0 0 0 3px;
+}
+
+.table-cell {
+    -fx-text-fill: #A09898;
+    -fx-font-size: 13px;
+    -fx-padding: 8 12;
+    -fx-alignment: CENTER-LEFT;
+}
+
+.table-row-cell:selected .table-cell { -fx-text-fill: #E8E0D0; }
+
+/* Scrollbar bảng */
+.table-view .scroll-bar:vertical {
+    -fx-background-color: #0D0D14;
+    -fx-pref-width: 7px;
+}
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #C9A84C;
+    -fx-background-radius: 4px;
+}
+.table-view .scroll-bar:horizontal {
+    -fx-background-color: #0D0D14;
+    -fx-pref-height: 7px;
+}
+.table-view .scroll-bar:horizontal .thumb {
+    -fx-background-color: #C9A84C;
+    -fx-background-radius: 4px;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: #3A3A52;
+    -fx-font-size: 14px;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: #13131F;
+    -fx-border-color: transparent;
+}
+.table-view .corner { -fx-background-color: #13131F; }
+
+/* ── SEARCH ── */
+.search-field {
+    -fx-background-color: #0D0D14;
+    -fx-text-fill: #E8E0D0;
+    -fx-prompt-text-fill: #3A3A52;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 9px 12px;
+    -fx-font-size: 13px;
+}
+.search-field:focused { -fx-border-color: #C9A84C; }
+
+.btn-search {
+    -fx-background-color: #C9A84C;
+    -fx-text-fill: #0D0D14;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 9 18;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+}
+.btn-search:hover {
+    -fx-background-color: #D4B86A;
+}
+
+.btn-icon {
+    -fx-background-color: transparent;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 9 12;
+    -fx-cursor: hand;
+}
+.btn-icon:hover {
+    -fx-border-color: #C9A84C;
+    -fx-background-color: rgba(201, 168, 76, 0.07);
+}
+
+/* ── SEPARATOR ── */
+.separator .line { -fx-border-color: #1E1E30; }
+.form-divider    { -fx-border-color: #1E1E30; -fx-border-width: 1 0 0 0; }
+
+/* ── CONTENT AREA ── */
+.content-area {
+    -fx-background-color: #13131F;
+    -fx-background-radius: 10px;
+}
+
+/* ── STATUS LABEL ── */
+.status { -fx-font-size: 13px; -fx-text-fill: #C9A84C; }
+.detail-card {
+    -fx-background-color: #13131F;
+    -fx-background-radius: 10px;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 16px;
+}
+/* ── ICON IKONLI SÁNG LÊN ── */
+.ikonli-font-icon {
+    -fx-icon-color: #6B6B8A;
+}
+
+/* Icon trong field label (key, lock, id-card...) */
+.field-icon {
+    -fx-icon-color: #6B6B8A;
+}
+
+/* Icon trong header (lock, user-circle...) */
+.header-icon {
+    -fx-icon-color: #C9A84C;
+}
+
+/* Icon trong menu button sidebar */
+.menu-button .ikonli-font-icon {
+    -fx-icon-color: #6B6B8A;
+}
+
+.menu-button:hover .ikonli-font-icon {
+    -fx-icon-color: #E8E0D0;
+}
+
+.menu-button:selected .ikonli-font-icon {
+    -fx-icon-color: #C9A84C;
+}
+
+/* Icon trong nút bấm (submit, nav...) */
+.submit-button .ikonli-font-icon,
+.btn-primary .ikonli-font-icon {
+    -fx-icon-color: #0D0D14;
+}
+
+.secondary-button .ikonli-font-icon,
+.nav-button .ikonli-font-icon,
+.nav-link-button .ikonli-font-icon {
+    -fx-icon-color: #6B6B8A;
+}
+
+.secondary-button:hover .ikonli-font-icon,
+.nav-button:hover .ikonli-font-icon,
+.nav-link-button:hover .ikonli-font-icon {
+    -fx-icon-color: #E8E0D0;
+}
+
+/* Icon trong header của form (fas-lock, fas-user-circle...) */
+.form-container .ikonli-font-icon {
+    -fx-icon-color: #C9A84C;
+}
+
+/* Icon trong TableView column header */
+.table-view .column-header .ikonli-font-icon {
+    -fx-icon-color: #C9A84C;
+}
+
+/* Icon trong segment button (Admin/User toggle) */
+.segment-button .ikonli-font-icon {
+    -fx-icon-color: #6B6B8A;
+}
+
+.segment-button:selected .ikonli-font-icon {
+    -fx-icon-color: #C9A84C;
 }
