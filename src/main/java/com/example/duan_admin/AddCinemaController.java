@@ -1,19 +1,22 @@
 package com.example.duan_admin;
 
+import com.google.gson.Gson;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import com.google.gson.Gson;
-import java.util.Map;
 
-public class AddCinemaController {
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+public class AddCinemaController extends BaseController {
 
     @FXML private TextField txtName;
     @FXML private TextField txtAddress;
 
     @FXML
     private void handleSave() {
+
         try {
             String name = txtName.getText().trim();
             String address = txtAddress.getText().trim();
@@ -57,7 +60,7 @@ public class AddCinemaController {
             System.out.println("Đang gửi yêu cầu thêm rạp sang Backend...");
 
             // 4. Gọi API bằng HTTPService
-            HTTPService.sendFullRequestAsync("POST", endpoint, null, jsonBody, null)
+            HTTPService.sendFullRequestAsync("POST", endpoint, null, jsonBody, Session.getToken())
                     .thenAccept(response -> {
                         int statusCode = response.statusCode();
                         Platform.runLater(() -> {
@@ -72,7 +75,7 @@ public class AddCinemaController {
                             }
                         });
                     })
-                    .exceptionally(ex -> {
+                    .orTimeout(10, TimeUnit.SECONDS).exceptionally(ex -> {
                         Platform.runLater(() ->
                                 hienThongBao("Mất kết nối", "Không thể kết nối tới Server!\nVui lòng kiểm tra lại kết nối.", Alert.AlertType.ERROR)
                         );
@@ -96,5 +99,10 @@ public class AddCinemaController {
         alert.setHeaderText(null);
         alert.setContentText(noiDung);
         alert.showAndWait();
+    }
+
+    @Override
+    public void Init() {
+
     }
 }

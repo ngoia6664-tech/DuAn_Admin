@@ -1,4 +1,7 @@
 package com.example.duan_admin;
 
-public class BaseController {
+public abstract class BaseController {
+    public abstract void Init();
+
+
 }

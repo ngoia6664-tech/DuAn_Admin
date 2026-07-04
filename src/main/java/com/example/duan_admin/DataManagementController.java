@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 // ===== MODEL CLASSES =====
 
@@ -71,15 +72,26 @@ class ShowRoom {
 
 class ShowTime {
     private Long id;
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    private String movieName;
     private String cinemaName;
     private String address;
     private LocalDateTime startTime;
 
-    public ShowTime(Long id, String cinemaName, String address, LocalDateTime startTime) {
+    public ShowTime(Long id,String movieName, String cinemaName, String address, LocalDateTime startTime) {
         this.id = id;
         this.cinemaName = cinemaName;
         this.address = address;
         this.startTime = startTime;
+        this.movieName= movieName;
     }
 
     public Long getId() { return id; }
@@ -90,7 +102,7 @@ class ShowTime {
 
 // ===== CONTROLLER =====
 
-public class DataManagementController {
+public class DataManagementController extends BaseController {
 
     @FXML private TableView tblData;
     @FXML private ToggleButton btnTabCinemas;
@@ -116,36 +128,23 @@ public class DataManagementController {
 
     // Cột Suất Chiếu
     @FXML private TableColumn<ShowTime, Long> colShowTimeId;
+    @FXML private TableColumn<ShowTime, String> colMovieName;
     @FXML private TableColumn<ShowTime, String> colCinemaName2;
     @FXML private TableColumn<ShowTime, String> colAddress;
     @FXML private TableColumn<ShowTime, String> colStartTime;
 
-    private String currentTab = "MOVIE";
+
     public void initialize() {
-        // Tạo ToggleGroup để chỉ 1 nút được chọn tại 1 thời điểm
-        ToggleGroup tabGroup = new ToggleGroup();
-        btnTabCinemas.setToggleGroup(tabGroup);
-        btnTabShowrooms.setToggleGroup(tabGroup);
-        btnTabShowtimes.setToggleGroup(tabGroup);
-        btnTabMovies.setToggleGroup(tabGroup);
 
-        // Không cho bỏ chọn tất cả
-        tabGroup.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal == null) oldVal.setSelected(true);
-        });
 
-        // Mặc định chọn tab Bộ Phim
-        btnTabMovies.setSelected(true);
-        btnMovie();
     }
 
     // ===== RẠP CHIẾU =====
     @FXML
     private void btnCinema() {
-        currentTab = "CINEMA";
-        System.out.println("Đang lấy danh sách rạp chiếu...");
+        LoadingOverlayManager.start(btnTabCinemas);
 
-        HTTPService.sendFullRequestAsync("GET", "/api/media/getCinemas", null, null, null)
+        HTTPService.sendFullRequestAsync("GET", "/api/media/getCinemas", null, null, Session.getToken())
                 .thenAccept(response -> {
                     System.out.println("Cinema status: " + response.statusCode());
                     System.out.println("Cinema body: " + response.body());
@@ -167,16 +166,18 @@ public class DataManagementController {
                             colCinemaId.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getId()));
                             colCinemaName.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getName()));
                             colCinemaAddress.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAddress()));
-
                             tblData.getColumns().clear();
+                            LoadingOverlayManager.stop();
                             tblData.getColumns().addAll(colCinemaId, colCinemaName, colCinemaAddress);
                             tblData.getItems().setAll(list);
                         });
                     } else {
+                        LoadingOverlayManager.stop();
                         System.out.println("Lỗi API Cinema: " + response.statusCode());
                     }
                 })
                 .exceptionally(ex -> {
+                    LoadingOverlayManager.stop();
                     System.err.println("Lỗi kết nối Cinema: " + ex.getMessage());
                     ex.printStackTrace();
                     return null;
@@ -186,9 +187,8 @@ public class DataManagementController {
     // ===== PHÒNG CHIẾU =====
     @FXML
     private void btnShowRoom() {
-        currentTab = "SHOWROOM";
-        System.out.println("Đang lấy danh sách phòng chiếu...");
-        HTTPService.sendFullRequestAsync("POST", "/api/media/getShowRooms", null, null, null)
+        LoadingOverlayManager.start(btnTabShowrooms);
+        HTTPService.sendFullRequestAsync("POST", "/api/media/getShowRooms", null, null, Session.getToken())
                 .thenAccept(response -> {
                     System.out.println("ShowRoom status: " + response.statusCode());
                     System.out.println("ShowRoom body: " + response.body());
@@ -210,17 +210,19 @@ public class DataManagementController {
                             colRoomId.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getId()));
                             colRoomName.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getRoomName()));
                             colCapacity.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getCapacity()));
-
                             tblData.getColumns().clear();
+                            LoadingOverlayManager.stop();
                             tblData.getColumns().addAll(colRoomId, colRoomName, colCapacity);
                             tblData.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                             tblData.getItems().setAll(list);
                         });
                     } else {
+                        LoadingOverlayManager.stop();
                         System.out.println("Lỗi API ShowRoom: " + response.statusCode());
                     }
                 })
                 .exceptionally(ex -> {
+                    LoadingOverlayManager.stop();
                     System.err.println("Lỗi kết nối ShowRoom: " + ex.getMessage());
                     ex.printStackTrace();
                     return null;
@@ -230,12 +232,12 @@ public class DataManagementController {
     // ===== SUẤT CHIẾU =====
     @FXML
     private void btnShowTime() {
-        currentTab = "SHOWTIME";
+        LoadingOverlayManager.start(btnTabShowtimes);
         System.out.println("Đang lấy danh sách suất chiếu...");
 
         String body = "{\"id\": 1}";
 
-        HTTPService.sendFullRequestAsync("POST", "/api/feature/getShowTime", null, body, null)
+        HTTPService.sendFullRequestAsync("GET", "/api/feature/GetShowTimeAdmin", null, body, Session.getToken())
                 .thenAccept(response -> {
                     System.out.println("ShowTime status: " + response.statusCode());
                     System.out.println("ShowTime body: " + response.body());
@@ -246,33 +248,38 @@ public class DataManagementController {
                             JSONObject obj = arr.getJSONObject(i);
                             try {
                                 Long id = obj.getLong("id");
+                                String movieName =obj.optString("movieName", "");
                                 String cinemaName = obj.optString("cinemaName", "");
                                 String address = obj.optString("address", "");
                                 String startTimeStr = obj.optString("startTime", "");
                                 LocalDateTime startTime = startTimeStr.isEmpty() ? null : LocalDateTime.parse(startTimeStr);
-                                list.add(new ShowTime(id, cinemaName, address, startTime));
+                                list.add(new ShowTime(id,movieName, cinemaName, address, startTime));
                             } catch (Exception e) {
+                                LoadingOverlayManager.stop();
                                 System.err.println("Lỗi parse ShowTime: " + e.getMessage());
                             }
                         }
                         Platform.runLater(() -> {
                             colShowTimeId.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getId()));
+                            colMovieName.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getMovieName()));
                             colCinemaName2.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCinemaName()));
                             colAddress.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAddress()));
                             colStartTime.setCellValueFactory(data -> new SimpleStringProperty(
                                     data.getValue().getStartTime() != null ? data.getValue().getStartTime().toString() : ""
                             ));
-
                             tblData.getColumns().clear();
-                            tblData.getColumns().addAll(colShowTimeId, colCinemaName2, colAddress, colStartTime);
+                            LoadingOverlayManager.stop();
+                            tblData.getColumns().addAll(colShowTimeId,colMovieName, colCinemaName2, colAddress, colStartTime);
                             tblData.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                             tblData.getItems().setAll(list);
                         });
                     } else {
+                        LoadingOverlayManager.stop();
                         System.out.println("Lỗi API ShowTime: " + response.statusCode());
                     }
                 })
                 .exceptionally(ex -> {
+                    LoadingOverlayManager.stop();
                     System.err.println("Lỗi kết nối ShowTime: " + ex.getMessage());
                     ex.printStackTrace();
                     return null;
@@ -282,9 +289,8 @@ public class DataManagementController {
     // ===== BỘ PHIM =====
     @FXML
     private void btnMovie() {
-        System.out.println("Đang lấy dữ liệu phim...");
-
-        HTTPService.sendFullRequestAsync("GET", "/api/feature/getMovies", null, null, null)
+        LoadingOverlayManager.start(btnTabMovies);
+        HTTPService.sendFullRequestAsync("GET", "/api/feature/getMovies", null, null, Session.getToken())
                 .thenAccept(response -> {
                     System.out.println("Movie status: " + response.statusCode());
                     if (response.statusCode() == 200) {
@@ -310,17 +316,19 @@ public class DataManagementController {
                             colGenre.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getGenre()));
                             colImage.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getImage()));
                             colReleaseDate.setCellValueFactory(data -> new SimpleObjectProperty<>(data.getValue().getReleaseDate()));
-
                             tblData.getColumns().clear();
+                            LoadingOverlayManager.stop();
                             tblData.getColumns().addAll(colId, colTitle, colGenre, colImage, colReleaseDate);
                             tblData.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
                             tblData.getItems().setAll(list);
                         });
                     } else {
+                        LoadingOverlayManager.stop();
                         System.out.println("Lỗi API Movie: " + response.statusCode());
                     }
                 })
-                .exceptionally(ex -> {
+                .orTimeout(10, TimeUnit.SECONDS).exceptionally(ex -> {
+                    LoadingOverlayManager.stop();
                     System.err.println("Lỗi kết nối Movie: " + ex.getMessage());
                     ex.printStackTrace();
                     return null;
@@ -335,5 +343,24 @@ public class DataManagementController {
             alert.setContentText(message);
             alert.showAndWait();
         });
+    }
+
+    @Override
+    public void Init() {
+        ToggleGroup tabGroup = new ToggleGroup();
+        btnTabCinemas.setToggleGroup(tabGroup);
+        btnTabShowrooms.setToggleGroup(tabGroup);
+        btnTabShowtimes.setToggleGroup(tabGroup);
+        btnTabMovies.setToggleGroup(tabGroup);
+
+        // Không cho bỏ chọn tất cả
+        tabGroup.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal == null) oldVal.setSelected(true);
+        });
+
+        // Mặc định chọn tab Bộ Phim
+        LoadingOverlayManager.start(btnTabShowtimes);
+        btnMovie();
+
     }
 }

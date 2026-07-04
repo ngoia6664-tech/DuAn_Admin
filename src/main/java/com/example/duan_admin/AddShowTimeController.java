@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 // 1. Class bọc thông tin Phim nhận về từ @GetMapping("/getMovies")
 class MovieModel {
@@ -35,7 +36,7 @@ class ShowRoomModel {
     }
 }
 
-public class AddShowTimeController {
+public class AddShowTimeController extends BaseController{
 
     @FXML private ComboBox<MovieModel> cmbMovie;
     @FXML private ComboBox<ShowRoomModel> cmbShowRoom;
@@ -56,7 +57,7 @@ public class AddShowTimeController {
     private void loadMoviesFromDatabase() {
         String endpoint = "/api/feature/getMovies";
 
-        HTTPService.sendFullRequestAsync("GET", endpoint, null, null, null)
+        HTTPService.sendFullRequestAsync("GET", endpoint, null, null, Session.getToken())
                 .thenAccept(response -> {
                     if (response.statusCode() == 200) {
                         List<MovieModel> movieList = new ArrayList<>();
@@ -82,7 +83,7 @@ public class AddShowTimeController {
     private void loadShowRoomsFromDatabase() {
         String endpoint = "/api/media/getShowRooms";
 
-        HTTPService.sendFullRequestAsync("POST", endpoint, null, null, null)
+        HTTPService.sendFullRequestAsync("POST", endpoint, null, null, Session.getToken())
                 .thenAccept(response -> {
                     if (response.statusCode() == 200) {
                         List<ShowRoomModel> roomList = new ArrayList<>();
@@ -137,7 +138,7 @@ public class AddShowTimeController {
 
             // 4. Gửi API
             String endpoint = "/api/feature/addShowTime";
-            HTTPService.sendFullRequestAsync("POST", endpoint, null, jsonBody, null)
+            HTTPService.sendFullRequestAsync("POST", endpoint, null, jsonBody, Session.getToken())
                     .thenAccept(response -> {
                         Platform.runLater(() -> {
                             if (response.statusCode() == 200 || response.statusCode() == 201) {
@@ -147,7 +148,15 @@ public class AddShowTimeController {
                                 hienThongBao("Lỗi " + response.statusCode(), "Backend báo: " + response.body(), AlertType.ERROR);
                             }
                         });
-                    });
+                    })
+                    .orTimeout(10, TimeUnit.SECONDS).exceptionally(ex -> {
+                        Platform.runLater(() ->
+                                hienThongBao("Mất kết nối", "Không thể kết nối tới Server!\nVui lòng kiểm tra lại kết nối.", AlertType.ERROR)
+                        );
+                        ex.printStackTrace();
+                        return null;
+                    });;
+
 
         } catch (NumberFormatException e) {
             hienThongBao("Lỗi", "Giá vé không hợp lệ!", AlertType.ERROR);
@@ -175,5 +184,10 @@ public class AddShowTimeController {
             @Override public String toString(ShowRoomModel object) { return object == null ? "" : object.roomName; }
             @Override public ShowRoomModel fromString(String string) { return null; }
         });
+    }
+
+    @Override
+    public void Init() {
+
     }
 }

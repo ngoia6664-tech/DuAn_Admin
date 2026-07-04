@@ -17,17 +17,17 @@
         <HBox spacing="20">
             <VBox spacing="10" style="-fx-background-color: #1e1e2d; -fx-padding: 20; -fx-background-radius: 10; -fx-border-color: #32324d; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
                 <Label text="Tổng doanh thu hôm nay" style="-fx-text-fill: #8888aa; -fx-font-size: 14px;"/>
-                <Label text="45,230,000 đ" style="-fx-text-fill: #00ffcc; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+                <Label fx:id="lblDoanhThu" text="Đang tải..." style="-fx-text-fill: #00ffcc; -fx-font-size: 28px; -fx-font-weight: bold;"/>
             </VBox>
 
             <VBox spacing="10" style="-fx-background-color: #1e1e2d; -fx-padding: 20; -fx-background-radius: 10; -fx-border-color: #32324d; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
                 <Label text="Vé đã bán" style="-fx-text-fill: #8888aa; -fx-font-size: 14px;"/>
-                <Label text="524 Vé" style="-fx-text-fill: #ff3366; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+                <Label fx:id="lblVeDaBan" text="Đang tải..." style="-fx-text-fill: #ff3366; -fx-font-size: 28px; -fx-font-weight: bold;"/>
             </VBox>
 
             <VBox spacing="10" style="-fx-background-color: #1e1e2d; -fx-padding: 20; -fx-background-radius: 10; -fx-border-color: #32324d; -fx-border-radius: 10;" HBox.hgrow="ALWAYS">
                 <Label text="Suất chiếu đang chạy" style="-fx-text-fill: #8888aa; -fx-font-size: 14px;"/>
-                <Label text="12 Suất" style="-fx-text-fill: #ffcc00; -fx-font-size: 28px; -fx-font-weight: bold;"/>
+                <Label fx:id="lblSuatChieu" text="Đang tải..." style="-fx-text-fill: #ffcc00; -fx-font-size: 28px; -fx-font-weight: bold;"/>
             </VBox>
         </HBox>
     </VBox>

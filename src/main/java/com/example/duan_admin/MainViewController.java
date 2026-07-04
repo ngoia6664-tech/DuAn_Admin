@@ -60,7 +60,7 @@ public class MainViewController {
 
         HTTPService.sendFullRequestAsync(
                 "POST",
-                "/api/admin/login",
+                "/api/auth/login",
                 null,
                 body.toString(),
                 null
@@ -74,7 +74,8 @@ public class MainViewController {
 
                 if (response.statusCode() == 200) {
                     JSONObject obj = new JSONObject(response.body());
-                    AdminSession.setAdminId(obj.getLong("id"));
+                    Session.setToken(obj.getString("token"));
+                    System.out.println(Session.getToken());
 
                     lblStatus.setText("");
 
@@ -216,7 +217,7 @@ public class MainViewController {
 
     @FXML
     private void quetQR() {
-        System.out.println("Chức năng quét QR đầu mục");
+        loadView("QRScanner.fxml"); // 👈 Đổi từ println thành loadView
     }
     @FXML
     private void moQuanTriDuLieu(){
@@ -224,14 +225,17 @@ public class MainViewController {
     }
     @FXML
     private void moQuanLyTaiKhoan(){
-        loadView("AccountManagementView.fxml");
+        loadView("UserManagementView.fxml");
     }
 
     private void loadView(String fxmlPath) {
         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             contentPane.getChildren().clear();
-            Parent view = FXMLLoader.load(getClass().getResource(fxmlPath));
+            Parent view = loader.load();
             contentPane.getChildren().add(view);
+            BaseController controller = loader.getController();
+            controller.Init();
         } catch (IOException e) {
             System.err.println("Không thể tải file FXML: " + fxmlPath);
             e.printStackTrace();

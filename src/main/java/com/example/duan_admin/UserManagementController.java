@@ -9,8 +9,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-public class UserManagementController {
+public class UserManagementController extends BaseController {
 
     // ── TableView & Columns ──────────────────────────────────────────────────
     @FXML private TableView<AccountDTO>   tableAccounts;
@@ -36,33 +37,33 @@ public class UserManagementController {
     // ────────────────────────────────────────────────────────────────────────
     @FXML
     public void initialize() {
-        // 1. Bind mỗi cột vào đúng thuộc tính của AccountDTO
-        colId      .setCellValueFactory(new PropertyValueFactory<>("id"));
-        colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
-        colEmail   .setCellValueFactory(new PropertyValueFactory<>("email"));
-        colRole    .setCellValueFactory(new PropertyValueFactory<>("role"));
-        colBalance .setCellValueFactory(new PropertyValueFactory<>("balance"));
 
-        // 2. Khi click một hàng → hiển thị chi tiết bên phải
-        loadAccounts();
     }
 
     // ── Load tất cả tài khoản ────────────────────────────────────────────────
     private void loadAccounts() {
-        HTTPService.sendFullRequestAsync("GET", "/api/account/all", null, null, null)
+        LoadingOverlayManager.start(tableAccounts);
+        HTTPService.sendFullRequestAsync("GET", "/api/account/all", null, null, Session.getToken())
                 .thenAccept(response -> {
                     if (response.statusCode() == 200) {
                         List<AccountDTO> list = parseAccounts(response.body());
                         Platform.runLater(() -> {
                             allAccounts.clear();
+                            LoadingOverlayManager.stop();
                             allAccounts.addAll(list);
                             tableAccounts.getItems().setAll(list);
                         });
                     } else {
+                        LoadingOverlayManager.stop();
                         showError("Không tải được danh sách tài khoản (HTTP "
                                 + response.statusCode() + ")");
                     }
-                });
+                }).orTimeout(10, TimeUnit.SECONDS).exceptionally(ex -> {
+                    LoadingOverlayManager.stop();
+                    System.err.println("Lỗi kết nối Movie: " + ex.getMessage());
+                    ex.printStackTrace();
+                    return null;
+                });;
     }
 
     // ── Parse JSON → List<AccountDTO> ────────────────────────────────────────
@@ -113,5 +114,20 @@ public class UserManagementController {
             alert.setContentText(message);
             alert.showAndWait();
         });
+    }
+
+    @Override
+    public void Init() {
+        // 1. Bind mỗi cột vào đúng thuộc tính của AccountDTO
+        colId      .setCellValueFactory(new PropertyValueFactory<>("id"));
+        colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        colEmail   .setCellValueFactory(new PropertyValueFactory<>("email"));
+        colRole    .setCellValueFactory(new PropertyValueFactory<>("role"));
+        colBalance .setCellValueFactory(new PropertyValueFactory<>("balance"));
+
+        // 2. Khi click một hàng → hiển thị chi tiết bên phải
+        loadAccounts();
+
+
     }
 }
