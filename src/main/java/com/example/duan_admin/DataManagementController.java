@@ -109,7 +109,6 @@ public class DataManagementController extends BaseController {
     @FXML private ToggleButton btnTabShowrooms;
     @FXML private ToggleButton btnTabShowtimes;
     @FXML private ToggleButton btnTabMovies;
-
     // Cột Phim
     @FXML private TableColumn<Movie, Long> colId;
     @FXML private TableColumn<Movie, String> colTitle;
@@ -137,25 +136,7 @@ public class DataManagementController extends BaseController {
 
     public void initialize() {
 
-    }
 
-    // ===== XỬ LÝ SỰ KIỆN QUAY LẠI TRANG CHỦ =====
-    @FXML
-    private void handleBackToHome() {
-        try {
-            // Lấy thực thể đang hoạt động của MainViewController
-            MainViewController mainController = MainViewController.getInstance();
-
-            if (mainController != null) {
-                // Gọi hàm hiển thị giao diện trang chủ (Home.fxml)
-                mainController.hienTrangHome();
-            } else {
-                System.err.println("Không tìm thấy thực thể hoạt động của MainViewController!");
-            }
-        } catch (Exception e) {
-            System.err.println("Lỗi khi quay về trang chủ: " + e.getMessage());
-            e.printStackTrace();
-        }
     }
 
     // ===== RẠP CHIẾU =====

@@ -4,7 +4,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -29,7 +32,6 @@ public class AddShowRoomController extends BaseController {
     private void loadCinemas() {
         Thread thread = new Thread(() -> {
             try {
-                System.out.println(">>> ĐANG GỌI URL: " + "http://localhost:8080/api/media/cinemas");
                 HttpClient client = HttpClient.newBuilder()
                         .connectTimeout(Duration.ofSeconds(5))
                         .build();
@@ -59,12 +61,12 @@ public class AddShowRoomController extends BaseController {
                     });
                 } else {
                     Platform.runLater(() ->
-                            showPopup("Lỗi hệ thống", "Không thể tải danh sách rạp!\nMã lỗi từ Server: " + response.statusCode())
+                            setStatus("Không thể tải danh sách rạp! Mã lỗi: " + response.statusCode(), true)
                     );
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                Platform.runLater(() -> showPopup("Lỗi kết nối", "Không thể kết nối tới server để tải danh sách rạp!"));
+                Platform.runLater(() -> setStatus("Không thể kết nối tới server!", true));
             }
         });
         thread.setDaemon(true);
@@ -77,17 +79,17 @@ public class AddShowRoomController extends BaseController {
         CinemaItem selectedCinema = cmbCinema.getValue();
         String roomName = txtRoomName.getText().trim();
 
-        // Validate dữ liệu đầu vào
+        // Validate
         if (selectedCinema == null) {
-            showPopup("Dữ liệu không hợp lệ", "Vui lòng chọn rạp chiếu trước khi tạo phòng!");
+            setStatus("Vui lòng chọn rạp chiếu!", true);
             return;
         }
         if (roomName.isEmpty()) {
-            showPopup("Dữ liệu không hợp lệ", "Vui lòng nhập tên phòng chiếu!");
+            setStatus("Vui lòng nhập tên phòng chiếu!", true);
             return;
         }
 
-        if (lblStatus != null) lblStatus.setText("Đang xử lý...");
+        setStatus("Đang xử lý...", false);
 
         Thread thread = new Thread(() -> {
             try {
@@ -116,24 +118,19 @@ public class AddShowRoomController extends BaseController {
                             new TypeReference<Map<String, Object>>() {}
                     );
                     Platform.runLater(() -> {
-                        if (lblStatus != null) lblStatus.setText("");
-                        showPopup("Tạo phòng thành công",
-                                "Đã tạo phòng: " + result.get("roomName") +
+                        showAlert("Thành công",
+                                "✅ Đã tạo phòng: " + result.get("roomName") +
                                         "\nSức chứa: " + result.get("capacity") + " ghế");
                         MainViewController.getInstance().hienTrangHome();
                     });
                 } else {
-                    Platform.runLater(() -> {
-                        if (lblStatus != null) lblStatus.setText("");
-                        showPopup("Thêm phòng thất bại", "Mã phản hồi từ hệ thống: " + response.statusCode());
-                    });
+                    Platform.runLater(() ->
+                            setStatus("Thêm phòng thất bại! Mã lỗi: " + response.statusCode(), true)
+                    );
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                Platform.runLater(() -> {
-                    if (lblStatus != null) lblStatus.setText("");
-                    showPopup("Lỗi kết nối", "Hệ thống không thể truyền tải dữ liệu tới máy chủ. Vui lòng thử lại!");
-                });
+                Platform.runLater(() -> setStatus("Không thể kết nối server!", true));
             }
         });
         thread.setDaemon(true);
@@ -146,54 +143,26 @@ public class AddShowRoomController extends BaseController {
         MainViewController.getInstance().hienTrangHome();
     }
 
-    // ============ HELPER POPUP DIALOG (ĐÃ FIX THEME GOLD) ============
-    private void showPopup(String title, String message) {
-        // Sử dụng INFORMATION thay vì ERROR để tránh sinh ra cái icon dấu X đỏ mặc định của JavaFX
+    // ============ HELPER ============
+    private void setStatus(String message, boolean isError) {
+        lblStatus.setText(message);
+        lblStatus.setStyle(isError
+                ? "-fx-text-fill: #ff4444; -fx-font-size: 13px;"
+                : "-fx-text-fill: #44bb44; -fx-font-size: 13px;");
+    }
+
+    private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
-
-        // Chuẩn màu Cinema Gold đồng bộ
-        String goldColor = "#C9A84C";
-        String darkBgColor = "#13131F";
-
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.setStyle(
-                "-fx-background-color: " + darkBgColor + ";" +
-                        "-fx-border-color: " + goldColor + ";" +
-                        "-fx-border-width: 1.5px;" +
-                        "-fx-border-radius: 10px;" +
-                        "-fx-background-radius: 10px;"
-        );
-
-        // Style nội dung văn bản chữ màu kem sáng sang trọng
-        Label contentLabel = (Label) dialogPane.lookup(".content.label");
-        if (contentLabel != null) {
-            contentLabel.setStyle(
-                    "-fx-text-fill: #E8E0D0;" +
-                            "-fx-font-size: 14px;" +
-                            "-fx-font-weight: bold;"
-            );
-        }
-
-        // Style nút OK thành nền vàng chữ đen (Khớp hoàn toàn với nút ADD SHOW ROOM)
-        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-        if (okButton != null) {
-            okButton.setStyle(
-                    "-fx-background-color: " + goldColor + ";" +
-                            "-fx-text-fill: #0D0D14;" +
-                            "-fx-font-weight: bold;" +
-                            "-fx-background-radius: 6px;" +
-                            "-fx-padding: 8 18;" +
-                            "-fx-cursor: hand;"
-            );
-        }
         alert.showAndWait();
     }
 
     @Override
-    public void Init() {}
+    public void Init() {
+
+    }
 
     // ============ INNER CLASS ============
     public static class CinemaItem {
@@ -211,5 +180,4 @@ public class AddShowRoomController extends BaseController {
         @Override
         public String toString() { return name; }
     }
-
 }

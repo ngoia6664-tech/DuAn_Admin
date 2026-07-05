@@ -2,7 +2,9 @@ package com.example.duan_admin;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.StringConverter;
 import org.json.JSONArray;
@@ -170,32 +172,6 @@ public class AddShowTimeController extends BaseController{
         alert.setTitle(tieuDe);
         alert.setHeaderText(null);
         alert.setContentText(noiDung);
-        // Style hộp thoại theo theme Cinema Gold
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.setStyle(
-                "-fx-background-color: #13131F;" +
-                        "-fx-border-color: #C9A84C;" +
-                        "-fx-border-width: 1px;" +
-                        "-fx-border-radius: 10px;" +
-                        "-fx-background-radius: 10px;"
-        );
-
-        // Style nội dung
-        ((Label) dialogPane.lookup(".content.label")).setStyle(
-                "-fx-text-fill: #E8E0D0;" +
-                        "-fx-font-size: 14px;"
-        );
-
-        // Style nút OK
-        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-        okButton.setStyle(
-                "-fx-background-color: #C9A84C;" +
-                        "-fx-text-fill: #0D0D14;" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-background-radius: 6px;" +
-                        "-fx-padding: 8 18;" +
-                        "-fx-cursor: hand;"
-        );
         alert.showAndWait();
     }
 

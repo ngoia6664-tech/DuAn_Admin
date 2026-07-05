@@ -192,32 +192,6 @@ public class AddMovieController extends BaseController{
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
-        // Style hộp thoại theo theme Cinema Gold
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.setStyle(
-                "-fx-background-color: #13131F;" +
-                        "-fx-border-color: #C9A84C;" +
-                        "-fx-border-width: 1px;" +
-                        "-fx-border-radius: 10px;" +
-                        "-fx-background-radius: 10px;"
-        );
-
-        // Style nội dung
-        ((Label) dialogPane.lookup(".content.label")).setStyle(
-                "-fx-text-fill: #E8E0D0;" +
-                        "-fx-font-size: 14px;"
-        );
-
-        // Style nút OK
-        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-        okButton.setStyle(
-                "-fx-background-color: #C9A84C;" +
-                        "-fx-text-fill: #0D0D14;" +
-                        "-fx-font-weight: bold;" +
-                        "-fx-background-radius: 6px;" +
-                        "-fx-padding: 8 18;" +
-                        "-fx-cursor: hand;"
-        );
         alert.showAndWait();
     }
 

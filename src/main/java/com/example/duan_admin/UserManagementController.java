@@ -63,7 +63,7 @@ public class UserManagementController extends BaseController {
                     System.err.println("Lỗi kết nối Movie: " + ex.getMessage());
                     ex.printStackTrace();
                     return null;
-                });
+                });;
     }
 
     // ── Parse JSON → List<AccountDTO> ────────────────────────────────────────
@@ -105,25 +105,6 @@ public class UserManagementController extends BaseController {
         loadAccounts();
     }
 
-    @FXML
-    private void handleBackToHome() {
-        try {
-            // Lấy thực thể (instance) đang chạy của MainViewController
-            MainViewController mainController = MainViewController.getInstance();
-
-            if (mainController != null) {
-                // Gọi hàm hiển thị giao diện trang chủ (Home.fxml) vào vùng contentPane
-                mainController.hienTrangHome();
-            } else {
-                System.err.println("Không tìm thấy thực thể hoạt động của MainViewController!");
-                showError("Có lỗi xảy ra khi quay về trang chủ.");
-            }
-        } catch (Exception e) {
-            System.err.println("Lỗi khi quay về trang chủ: " + e.getMessage());
-            e.printStackTrace();
-            showError("Không thể quay lại trang chủ: " + e.getMessage());
-        }
-    }
     // ── Helper ───────────────────────────────────────────────────────────────
     private void showError(String message) {
         Platform.runLater(() -> {
@@ -131,32 +112,6 @@ public class UserManagementController extends BaseController {
             alert.setTitle("Lỗi");
             alert.setHeaderText(null);
             alert.setContentText(message);
-            // Style hộp thoại theo theme Cinema Gold
-            DialogPane dialogPane = alert.getDialogPane();
-            dialogPane.setStyle(
-                    "-fx-background-color: #13131F;" +
-                            "-fx-border-color: #C9A84C;" +
-                            "-fx-border-width: 1px;" +
-                            "-fx-border-radius: 10px;" +
-                            "-fx-background-radius: 10px;"
-            );
-
-            // Style nội dung
-            ((Label) dialogPane.lookup(".content.label")).setStyle(
-                    "-fx-text-fill: #E8E0D0;" +
-                            "-fx-font-size: 14px;"
-            );
-
-            // Style nút OK
-            Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
-            okButton.setStyle(
-                    "-fx-background-color: #C9A84C;" +
-                            "-fx-text-fill: #0D0D14;" +
-                            "-fx-font-weight: bold;" +
-                            "-fx-background-radius: 6px;" +
-                            "-fx-padding: 8 18;" +
-                            "-fx-cursor: hand;"
-            );
             alert.showAndWait();
         });
     }
@@ -170,7 +125,9 @@ public class UserManagementController extends BaseController {
         colRole    .setCellValueFactory(new PropertyValueFactory<>("role"));
         colBalance .setCellValueFactory(new PropertyValueFactory<>("balance"));
 
-        // 2. Tải dữ liệu tài khoản lên bảng
+        // 2. Khi click một hàng → hiển thị chi tiết bên phải
         loadAccounts();
+
+
     }
 }

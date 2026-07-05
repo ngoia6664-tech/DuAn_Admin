@@ -18,23 +18,10 @@
     <top>
         <VBox spacing="20" BorderPane.alignment="CENTER">
 
-            <!-- Header chứa tiêu đề bên trái và Nút Quay lại bên phải -->
-            <HBox alignment="CENTER_LEFT">
-                <!-- Tiêu đề trang -->
-                <HBox spacing="10" alignment="CENTER_LEFT">
-                    <FontIcon iconLiteral="fas-users" iconSize="28" styleClass="header-icon"/>
-                    <Label text="QUẢN LÝ NGƯỜI DÙNG" styleClass="page-title"/>
-                </HBox>
-
-                <!-- Vùng đệm tự động giãn cách giữa tiêu đề và nút quay lại -->
-                <Region HBox.hgrow="ALWAYS" />
-
-                <!-- Nút Quay lại trang chủ (Được map với hàm handleBackToHome trong Controller) -->
-                <Button text="Quay lại" onAction="#handleBackToHome" styleClass="btn-secondary">
-                    <graphic>
-                        <FontIcon iconLiteral="fas-home" iconSize="14"/>
-                    </graphic>
-                </Button>
+            <!-- Header với icon -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <FontIcon iconLiteral="fas-users" iconSize="28" styleClass="header-icon"/>
+                <Label text="QUẢN LÝ NGƯỜI DÙNG" styleClass="page-title"/>
             </HBox>
 
             <!-- Thanh tìm kiếm -->

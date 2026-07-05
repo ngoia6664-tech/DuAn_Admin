@@ -33,31 +33,11 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.45), 20, 0, 0, 4);
 }
 
-/* ── THIẾT KẾ LOGO CINEVERSE ── */
-.logo-container {
-    -fx-padding: 5 0 5 0;
-}
-
-.logo-text {
-    -fx-font-family: "Segoe UI", "Open Sans", "Arial", sans-serif;
-    -fx-font-size: 34px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #FF1E27;
-    -fx-letter-spacing: 2px;
-    -fx-effect: dropshadow(three-pass-box, rgba(255, 30, 39, 0.5), 10, 0.4, 0, 0);
-}
-
-.logo-icon {
-    -fx-fill: #FF1E27;
-    -fx-effect: dropshadow(three-pass-box, rgba(255, 30, 39, 0.5), 8, 0.4, 0, 0);
-}
-
 /* ── CHỮ & TIÊU ĐỀ ── */
-.form-title, .page-title, .title {
-    -fx-font-size: 21px;
+.page-title, .title {
+    -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-text-fill: #FFFFFF;
-    -fx-letter-spacing: 0.5px;
+    -fx-text-fill: #E8E0D0;
 }
 
 .header-text {
@@ -75,7 +55,7 @@
 
 .subtitle, .form-subtitle {
     -fx-font-size: 13px;
-    -fx-text-fill: #8C8CAB;
+    -fx-text-fill: #6B6B8A;
 }
 
 .field-label, .input-label {
@@ -83,11 +63,11 @@
     -fx-text-fill: #A09898;
 }
 
-/* ── Ô NHẬP LIỆU TIÊU CHUẨN ── */
-.input, .form-input, .form-datepicker {
+/* ── Ô NHẬP LIỆU ── */
+.input, .form-input, .form-textarea, .form-combo, .form-datepicker {
     -fx-background-color: #0D0D14;
     -fx-text-fill: #E8E0D0;
-    -fx-prompt-text-fill: #4E4E6A;
+    -fx-prompt-text-fill: #3A3A52;
     -fx-border-color: #1E1E30;
     -fx-border-radius: 7px;
     -fx-background-radius: 7px;
@@ -96,109 +76,25 @@
 }
 
 .input:focused,
-.form-input:focused {
+.form-input:focused,
+.form-textarea:focused,
+.form-combo:focused {
     -fx-border-color: #C9A84C;
     -fx-background-color: #111120;
 }
 
-/* ── Ô MÔ TẢ NỘI DUNG (TEXTAREA) ── */
-.form-textarea {
-    -fx-background-color: #0D0D14 !important;
-    -fx-text-fill: #FFFFFF !important;
-    -fx-prompt-text-fill: #6B6B8A !important;
-    -fx-border-color: #C9A84C !important;
-    -fx-border-width: 1px !important;
-    -fx-border-radius: 7px !important;
-    -fx-background-radius: 7px !important;
-    -fx-font-size: 13px;
-    -fx-padding: 10px;
+.input-readonly {
+    -fx-background-color: #13131F;
+    -fx-text-fill: #E8E0D0;
+    -fx-prompt-text-fill: #3A3A52;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-highlight-fill: transparent;
+    -fx-highlight-text-fill: #E8E0D0;
 }
 
-.form-textarea:focused {
-    -fx-border-color: #D4B86A !important;
-    -fx-background-color: #111120 !important;
-    -fx-effect: dropshadow(three-pass-box, rgba(201, 168, 76, 0.2), 8, 0, 0, 0);
-}
-
-.form-textarea .content {
-    -fx-background-color: transparent !important;
-    -fx-text-fill: #FFFFFF !important;
-}
-
-/* ==========================================================================
-   CONFIG BẢNG LỊCH (DATEPICKER POPUP) ── */
-.form-datepicker .text-field {
-    -fx-text-fill: #E8E0D0 !important;
-}
-
-.date-picker-popup,
-.date-picker-popup .calendar-grid {
-    -fx-background-color: #0D0D14 !important;
-}
-
-.date-picker-popup {
-    -fx-border-color: #C9A84C !important;
-    -fx-border-width: 1.5px !important;
-}
-
-.date-picker-popup .calendar-header {
-    -fx-background-color: #E8E0D0 !important;
-    -fx-text-background-color: #0D0D14 !important;
-}
-
-.date-picker-popup .calendar-header * {
-    -fx-text-fill: #0D0D14 !important;
-    -fx-text-base-color: #0D0D14 !important;
-    -fx-fill: #0D0D14 !important;
-    -fx-font-weight: bold !important;
-}
-
-.date-picker-popup .calendar-header .button,
-.date-picker-popup .calendar-header .spinner,
-.date-picker-popup .calendar-header .left-button,
-.date-picker-popup .calendar-header .right-button {
-    -fx-background-color: transparent !important;
-    -fx-text-fill: #0D0D14 !important;
-}
-
-.date-picker-popup .calendar-header .left-arrow,
-.date-picker-popup .calendar-header .right-arrow,
-.date-picker-popup .calendar-header .chevron {
-    -fx-background-color: #0D0D14 !important;
-}
-
-.date-picker-popup .calendar-grid .day-name-cell {
-    -fx-text-fill: #C9A84C !important;
-    -fx-font-weight: bold !important;
-    -fx-background-color: #0D0D14 !important;
-}
-
-.date-picker-popup .day-cell {
-    -fx-background-color: #0D0D14 !important;
-    -fx-text-fill: #FFFFFF !important;
-    -fx-font-weight: bold !important;
-    -fx-border-color: #C9A84C !important;
-    -fx-border-width: 0.5px !important;
-}
-
-.date-picker-popup .day-cell.previous-month,
-.date-picker-popup .day-cell.next-month {
-    -fx-text-fill: #4E4E6A !important;
-}
-
-.date-picker-popup .day-cell:hover {
-    -fx-background-color: rgba(201, 168, 76, 0.2) !important;
-    -fx-text-fill: #FFFFFF !important;
-}
-
-.date-picker-popup .day-cell:selected,
-.date-picker-popup .day-cell.today {
-    -fx-background-color: #C9A84C !important;
-    -fx-text-fill: #0D0D14 !important;
-}
-
-/* ==========================================================================
-   CÁC THÀNH PHẦN KHÁC ── */
+/* ComboBox */
 .combo-box .list-cell,
 .form-combo .list-cell {
     -fx-text-fill: #E8E0D0;
@@ -207,6 +103,7 @@
 .combo-box .arrow-button { -fx-background-color: transparent; }
 .combo-box .arrow { -fx-background-color: #C9A84C; }
 
+/* ── NÚT BẤM ── */
 .submit-button, .btn-primary {
     -fx-background-color: #C9A84C;
     -fx-text-fill: #0D0D14;
@@ -224,9 +121,13 @@
     -fx-scale-y: 1.02;
 }
 
-.secondary-button, .btn-secondary {
+.submit-button:pressed, .btn-primary:pressed {
+    -fx-background-color: #A8893A;
+}
+
+.secondary-button, .btn-secondary, .nav-button, .nav-link-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #8C8CAB;
+    -fx-text-fill: #6B6B8A;
     -fx-border-color: #1E1E30;
     -fx-border-radius: 7px;
     -fx-background-radius: 7px;
@@ -235,6 +136,74 @@
     -fx-font-size: 13px;
 }
 
+.secondary-button:hover, .btn-secondary:hover,
+.nav-button:hover, .nav-link-button:hover {
+    -fx-text-fill: #E8E0D0;
+    -fx-border-color: #C9A84C;
+    -fx-background-color: rgba(201, 168, 76, 0.07);
+}
+
+/* ── SIDEBAR (dùng trong AccountManagement) ── */
+.sidebar {
+    -fx-background-color: #0D0D14;
+    -fx-border-color: transparent #1A1A2E transparent transparent;
+    -fx-border-width: 1px;
+}
+
+.sidebar-title {
+    -fx-text-fill: #E8E0D0;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-icon { -fx-icon-color: #C9A84C; }
+.field-icon   { -fx-icon-color: #6B6B8A; }
+.header-icon  { -fx-icon-color: #C9A84C; }
+
+/* ── MENU BUTTON (segment trong AccountManagement) ── */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #6B6B8A;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+
+.menu-button:hover {
+    -fx-background-color: rgba(201, 168, 76, 0.07);
+    -fx-text-fill: #E8E0D0;
+    -fx-border-color: #C9A84C;
+}
+
+.menu-button:selected {
+    -fx-background-color: #C9A84C;
+    -fx-text-fill: #0D0D14;
+    -fx-border-color: transparent;
+    -fx-font-weight: bold;
+}
+
+/* Segment toggle (Admin / User switch) */
+.segment-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #6B6B8A;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 0;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+
+.segment-button:selected {
+    -fx-background-color: rgba(201, 168, 76, 0.15);
+    -fx-text-fill: #C9A84C;
+    -fx-font-weight: bold;
+    -fx-border-color: #C9A84C;
+}
+
+/* ── TABLEVIEW ── */
 .table-view {
     -fx-background-color: #0D0D14;
     -fx-border-color: #1E1E30;
@@ -245,11 +214,13 @@
 
 .table-view .column-header-background {
     -fx-background-color: #13131F;
+    -fx-background-radius: 10px 10px 0 0;
 }
 
 .table-view .column-header {
     -fx-background-color: transparent;
     -fx-border-color: transparent #1E1E30 transparent transparent;
+    -fx-border-width: 0 1 0 0;
     -fx-size: 40px;
 }
 
@@ -257,20 +228,186 @@
     -fx-text-fill: #C9A84C;
     -fx-font-weight: bold;
     -fx-font-size: 13px;
+    -fx-alignment: CENTER;
 }
 
 .table-row-cell {
     -fx-background-color: #0D0D14;
     -fx-border-color: transparent transparent #1A1A2E transparent;
+    -fx-border-width: 0 0 1 0;
 }
+
 .table-row-cell:odd  { -fx-background-color: #0F0F1A; }
 .table-row-cell:even { -fx-background-color: #0D0D14; }
+
+.table-row-cell:hover {
+    -fx-background-color: rgba(201, 168, 76, 0.06);
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgba(201, 168, 76, 0.12);
+    -fx-border-color: #C9A84C;
+    -fx-border-width: 0 0 0 3px;
+}
 
 .table-cell {
     -fx-text-fill: #A09898;
     -fx-font-size: 13px;
     -fx-padding: 8 12;
+    -fx-alignment: CENTER-LEFT;
 }
 
+.table-row-cell:selected .table-cell { -fx-text-fill: #E8E0D0; }
+
+/* Scrollbar bảng */
+.table-view .scroll-bar:vertical {
+    -fx-background-color: #0D0D14;
+    -fx-pref-width: 7px;
+}
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #C9A84C;
+    -fx-background-radius: 4px;
+}
+.table-view .scroll-bar:horizontal {
+    -fx-background-color: #0D0D14;
+    -fx-pref-height: 7px;
+}
+.table-view .scroll-bar:horizontal .thumb {
+    -fx-background-color: #C9A84C;
+    -fx-background-radius: 4px;
+}
+
+.table-view .placeholder .label {
+    -fx-text-fill: #3A3A52;
+    -fx-font-size: 14px;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: #13131F;
+    -fx-border-color: transparent;
+}
+.table-view .corner { -fx-background-color: #13131F; }
+
+/* ── SEARCH ── */
+.search-field {
+    -fx-background-color: #0D0D14;
+    -fx-text-fill: #E8E0D0;
+    -fx-prompt-text-fill: #3A3A52;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 9px 12px;
+    -fx-font-size: 13px;
+}
+.search-field:focused { -fx-border-color: #C9A84C; }
+
+.btn-search {
+    -fx-background-color: #C9A84C;
+    -fx-text-fill: #0D0D14;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 9 18;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+}
+.btn-search:hover {
+    -fx-background-color: #D4B86A;
+}
+
+.btn-icon {
+    -fx-background-color: transparent;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 9 12;
+    -fx-cursor: hand;
+}
+.btn-icon:hover {
+    -fx-border-color: #C9A84C;
+    -fx-background-color: rgba(201, 168, 76, 0.07);
+}
+
+/* ── SEPARATOR ── */
 .separator .line { -fx-border-color: #1E1E30; }
 .form-divider    { -fx-border-color: #1E1E30; -fx-border-width: 1 0 0 0; }
+
+/* ── CONTENT AREA ── */
+.content-area {
+    -fx-background-color: #13131F;
+    -fx-background-radius: 10px;
+}
+
+/* ── STATUS LABEL ── */
+.status { -fx-font-size: 13px; -fx-text-fill: #C9A84C; }
+.detail-card {
+    -fx-background-color: #13131F;
+    -fx-background-radius: 10px;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 16px;
+}
+/* ── ICON IKONLI SÁNG LÊN ── */
+.ikonli-font-icon {
+    -fx-icon-color: #6B6B8A;
+}
+
+/* Icon trong field label (key, lock, id-card...) */
+.field-icon {
+    -fx-icon-color: #6B6B8A;
+}
+
+/* Icon trong header (lock, user-circle...) */
+.header-icon {
+    -fx-icon-color: #C9A84C;
+}
+
+/* Icon trong menu button sidebar */
+.menu-button .ikonli-font-icon {
+    -fx-icon-color: #6B6B8A;
+}
+
+.menu-button:hover .ikonli-font-icon {
+    -fx-icon-color: #E8E0D0;
+}
+
+.menu-button:selected .ikonli-font-icon {
+    -fx-icon-color: #C9A84C;
+}
+
+/* Icon trong nút bấm (submit, nav...) */
+.submit-button .ikonli-font-icon,
+.btn-primary .ikonli-font-icon {
+    -fx-icon-color: #0D0D14;
+}
+
+.secondary-button .ikonli-font-icon,
+.nav-button .ikonli-font-icon,
+.nav-link-button .ikonli-font-icon {
+    -fx-icon-color: #6B6B8A;
+}
+
+.secondary-button:hover .ikonli-font-icon,
+.nav-button:hover .ikonli-font-icon,
+.nav-link-button:hover .ikonli-font-icon {
+    -fx-icon-color: #E8E0D0;
+}
+
+/* Icon trong header của form (fas-lock, fas-user-circle...) */
+.form-container .ikonli-font-icon {
+    -fx-icon-color: #C9A84C;
+}
+
+/* Icon trong TableView column header */
+.table-view .column-header .ikonli-font-icon {
+    -fx-icon-color: #C9A84C;
+}
+
+/* Icon trong segment button (Admin/User toggle) */
+.segment-button .ikonli-font-icon {
+    -fx-icon-color: #6B6B8A;
+}
+
+.segment-button:selected .ikonli-font-icon {
+    -fx-icon-color: #C9A84C;
+}
