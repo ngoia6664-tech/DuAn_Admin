@@ -90,7 +90,7 @@ public class MainViewController {
                 "/api/auth/login",
                 null,
                 body.toString(),
-                 Session.getToken()
+                Session.getToken()
         ).thenAccept(response -> {
 
             System.out.println("========== RESPONSE ==========");
