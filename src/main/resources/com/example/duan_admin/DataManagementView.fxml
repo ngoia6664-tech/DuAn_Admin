@@ -77,7 +77,7 @@
                 <TableColumn fx:id="colCapacity" text="Sức Chứa" prefWidth="100"/>
 
                 <!-- Suất Chiếu -->
-                <TableColumn fx:id="colShowTimeId" text="ID" prefWidth="10"/>
+                <TableColumn fx:id="colShowTimeId" text="ID" prefWidth="20"/>
                 <TableColumn fx:id="colMovieName" text="Tên Phim" prefWidth="100"/>
                 <TableColumn fx:id="colCinemaName2" text="Tên Rạp" prefWidth="150"/>
                 <TableColumn fx:id="colAddress" text="Địa Chỉ" prefWidth="150"/>

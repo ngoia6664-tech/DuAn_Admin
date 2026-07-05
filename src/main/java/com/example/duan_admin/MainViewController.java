@@ -273,7 +273,7 @@ public class MainViewController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent view = loader.load();
 
-            view.setOpacity(0);
+            
             contentPane.getChildren().clear();
             contentPane.getChildren().add(view);
             BaseController controller = loader.getController();

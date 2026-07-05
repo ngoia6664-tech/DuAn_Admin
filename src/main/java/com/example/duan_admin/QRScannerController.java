@@ -119,7 +119,7 @@ public class QRScannerController extends BaseController {
         Core.convertScaleAbs(frame, processed, 1.3, 20);
 
         try {
-            // Chuyển đổi siêu tốc Mat sang BufferedImage không cần nén PNG/JPEG để tăng tốc độ nhận dạng
+            // Chuyển  Mat sang BufferedImage không cần nén PNG/JPEG để tăng tốc độ nhận dạng
             BufferedImage buffered = matToBufferedImageFast(processed);
             if (buffered == null) return;
 
@@ -149,12 +149,14 @@ public class QRScannerController extends BaseController {
 
         Thread thread = new Thread(() -> {
             try {
+                System.out.println(ConfigLoader.getBaseUrl() + "/api/Ticket/validateQR" + "?ticketCode=" + ticketCode + "&showtimeId=" + showtimeId );
                 HttpClient client = HttpClient.newBuilder()
                         .connectTimeout(Duration.ofSeconds(5))
                         .build();
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(URI.create(ConfigLoader.getBaseUrl() + "/api/Ticket/validateQR" + "?ticketCode=" + ticketCode + "&showtimeId=" + showtimeId ))
                         .timeout(Duration.ofSeconds(10))
+                        .header("Authorization", "Bearer " + Session.getToken())
                         .POST(HttpRequest.BodyPublishers.noBody())
                         .build();
 
