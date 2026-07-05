@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane stylesheets="@MainView.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.duan_admin.MainViewController">
+
+    <top>
+        <HBox fx:id="headerPane" styleClass="topbar">
+            <VBox spacing="2">
+                <Label styleClass="title" text="BẢNG ĐIỀU KHIỂN QUẢN TRỊ" />
+                <Label styleClass="admin-title" text="CINEVERSE ADMIN" />
+            </VBox>
+
+            <Pane HBox.hgrow="ALWAYS" />
+
+            <Label styleClass="admin-name" text="Xin chào Admin" />
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane fx:id="rootPane" styleClass="background">
+
+            <AnchorPane fx:id="loginPane" visible="true" managed="true" styleClass="background">
+                <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <VBox alignment="CENTER" maxWidth="420" maxHeight="500" spacing="25" styleClass="login-card">
+                        <padding>
+                            <Insets bottom="40" left="40" right="40" top="40" />
+                        </padding>
+
+                        <VBox alignment="CENTER" spacing="5">
+                            <Label styleClass="logo-text" text="CINEVERSE" />
+                            <Label styleClass="login-title" text="ADMINISTRATOR LOGIN" />
+                        </VBox>
+
+                        <Separator styleClass="form-divider" />
+
+                        <VBox spacing="8">
+                            <Label styleClass="field-label" text="Tên đăng nhập" />
+                            <TextField fx:id="txtUsername" promptText="Nhập tài khoản quản trị" styleClass="input" />
+                        </VBox>
+
+                        <VBox spacing="8">
+                            <Label styleClass="field-label" text="Mật khẩu" />
+                            <PasswordField fx:id="txtPassword" promptText="Nhập mật khẩu an toàn" styleClass="input" />
+                        </VBox>
+
+                        <HBox alignment="CENTER_LEFT">
+                            <CheckBox styleClass="remember-me" text="Ghi nhớ phiên đăng nhập" />
+                        </HBox>
+
+                        <Label fx:id="lblStatus" styleClass="status" />
+
+                        <Button onAction="#login" maxWidth="Infinity" styleClass="submit-button" text="ĐĂNG NHẬP HỆ THỐNG" />
+                    </VBox>
+                </StackPane>
+            </AnchorPane>
+
+            <BorderPane fx:id="dashboardPane" visible="true" managed="true">
+                <left>
+                    <VBox fx:id="sidebarPane"
+                          spacing="15"
+                          prefWidth="240"
+                          minWidth="240"
+                          maxWidth="240"
+                          styleClass="sidebar">
+
+                        <padding>
+                            <Insets top="20" bottom="20" left="10" right="10" />
+                        </padding>
+
+                        <VBox alignment="CENTER" spacing="5" style="-fx-padding: 10 0 10 0;">
+                            <FontIcon iconLiteral="fas-film"
+                                      iconSize="40"
+                                      iconColor="white"
+                                      styleClass="sidebar-logo-icon"/>
+                            <Label text="CINEVERSE" styleClass="sidebar-title"/>
+                            <Label text="Admin Dashboard" styleClass="sidebar-subtitle"/>
+                        </VBox>
+
+                        <Separator styleClass="sidebar-divider"/>
+
+                        <VBox spacing="5" VBox.vgrow="ALWAYS">
+                            <Button styleClass="menu-button" text="Thêm phim" maxWidth="Infinity" onAction="#moThemPhim">
+                                <graphic><FontIcon iconLiteral="fas-film" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                            <Button styleClass="menu-button" text="Thêm rạp chiếu" maxWidth="Infinity" onAction="#moThemRap">
+                                <graphic><FontIcon iconLiteral="fas-building" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                            <Button styleClass="menu-button" text="Thêm phòng chiếu" maxWidth="Infinity" onAction="#moThemPhong">
+                                <graphic><FontIcon iconLiteral="fas-door-open" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                            <Button styleClass="menu-button" text="Thêm suất chiếu" maxWidth="Infinity" onAction="#moThemSuat">
+                                <graphic><FontIcon iconLiteral="fas-clock" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                            <Button styleClass="menu-button" text="Quét mã QR" maxWidth="Infinity" onAction="#quetQR">
+                                <graphic><FontIcon iconLiteral="fas-qrcode" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                            <Button styleClass="menu-button" text="Quản trị dữ liệu" maxWidth="Infinity" onAction="#moQuanTriDuLieu">
+                                <graphic><FontIcon iconLiteral="fas-database" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                            <Button styleClass="menu-button" text="Quản lý tài khoản" maxWidth="Infinity" onAction="#moQuanLyTaiKhoan">
+                                <graphic><FontIcon iconLiteral="fas-user-shield" iconSize="18" styleClass="menu-icon"/></graphic>
+                            </Button>
+                        </VBox>
+
+                        <Separator styleClass="sidebar-divider"/>
+                        <Button fx:id="btnLogout"
+                                text="Đăng xuất"
+                                maxWidth="Infinity"
+                                onAction="#logout"
+                                styleClass="logout-button"/>
+                    </VBox>
+                </left>
+
+                <center>
+                    <StackPane fx:id="contentPane" styleClass="content-area">
+                    </StackPane>
+                </center>
+            </BorderPane>
+
+        </StackPane>
+    </center>
+
+</BorderPane>

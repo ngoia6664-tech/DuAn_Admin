@@ -1,0 +1,276 @@
+/* ==========================================================================
+   CSS CHUNG — Cinema Gold Theme
+   ========================================================================== */
+
+/* ── NỀN & SCROLL ── */
+.background {
+    -fx-background-color: #0D0D14;
+    -fx-background: #0D0D14;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-viewport-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* ── FORM CARD ── */
+.form-root {
+    -fx-background-color: #0D0D14;
+}
+
+.form-card {
+    -fx-background-color: #13131F;
+    -fx-background-radius: 14px;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 14px;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.45), 20, 0, 0, 4);
+}
+
+/* ── THIẾT KẾ LOGO CINEVERSE ── */
+.logo-container {
+    -fx-padding: 5 0 5 0;
+}
+
+.logo-text {
+    -fx-font-family: "Segoe UI", "Open Sans", "Arial", sans-serif;
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FF1E27;
+    -fx-letter-spacing: 2px;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 30, 39, 0.5), 10, 0.4, 0, 0);
+}
+
+.logo-icon {
+    -fx-fill: #FF1E27;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 30, 39, 0.5), 8, 0.4, 0, 0);
+}
+
+/* ── CHỮ & TIÊU ĐỀ ── */
+.form-title, .page-title, .title {
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+    -fx-letter-spacing: 0.5px;
+}
+
+.header-text {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #C9A84C;
+}
+
+.section-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #E8E0D0;
+    -fx-padding: 8 0 4 0;
+}
+
+.subtitle, .form-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #8C8CAB;
+}
+
+.field-label, .input-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #A09898;
+}
+
+/* ── Ô NHẬP LIỆU TIÊU CHUẨN ── */
+.input, .form-input, .form-datepicker {
+    -fx-background-color: #0D0D14;
+    -fx-text-fill: #E8E0D0;
+    -fx-prompt-text-fill: #4E4E6A;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 10px;
+    -fx-font-size: 13px;
+}
+
+.input:focused,
+.form-input:focused {
+    -fx-border-color: #C9A84C;
+    -fx-background-color: #111120;
+}
+
+/* ── Ô MÔ TẢ NỘI DUNG (TEXTAREA) ── */
+.form-textarea {
+    -fx-background-color: #0D0D14 !important;
+    -fx-text-fill: #FFFFFF !important;
+    -fx-prompt-text-fill: #6B6B8A !important;
+    -fx-border-color: #C9A84C !important;
+    -fx-border-width: 1px !important;
+    -fx-border-radius: 7px !important;
+    -fx-background-radius: 7px !important;
+    -fx-font-size: 13px;
+    -fx-padding: 10px;
+}
+
+.form-textarea:focused {
+    -fx-border-color: #D4B86A !important;
+    -fx-background-color: #111120 !important;
+    -fx-effect: dropshadow(three-pass-box, rgba(201, 168, 76, 0.2), 8, 0, 0, 0);
+}
+
+.form-textarea .content {
+    -fx-background-color: transparent !important;
+    -fx-text-fill: #FFFFFF !important;
+}
+
+/* ==========================================================================
+   CONFIG BẢNG LỊCH (DATEPICKER POPUP) ── */
+.form-datepicker .text-field {
+    -fx-text-fill: #E8E0D0 !important;
+}
+
+.date-picker-popup,
+.date-picker-popup .calendar-grid {
+    -fx-background-color: #0D0D14 !important;
+}
+
+.date-picker-popup {
+    -fx-border-color: #C9A84C !important;
+    -fx-border-width: 1.5px !important;
+}
+
+.date-picker-popup .calendar-header {
+    -fx-background-color: #E8E0D0 !important;
+    -fx-text-background-color: #0D0D14 !important;
+}
+
+.date-picker-popup .calendar-header * {
+    -fx-text-fill: #0D0D14 !important;
+    -fx-text-base-color: #0D0D14 !important;
+    -fx-fill: #0D0D14 !important;
+    -fx-font-weight: bold !important;
+}
+
+.date-picker-popup .calendar-header .button,
+.date-picker-popup .calendar-header .spinner,
+.date-picker-popup .calendar-header .left-button,
+.date-picker-popup .calendar-header .right-button {
+    -fx-background-color: transparent !important;
+    -fx-text-fill: #0D0D14 !important;
+}
+
+.date-picker-popup .calendar-header .left-arrow,
+.date-picker-popup .calendar-header .right-arrow,
+.date-picker-popup .calendar-header .chevron {
+    -fx-background-color: #0D0D14 !important;
+}
+
+.date-picker-popup .calendar-grid .day-name-cell {
+    -fx-text-fill: #C9A84C !important;
+    -fx-font-weight: bold !important;
+    -fx-background-color: #0D0D14 !important;
+}
+
+.date-picker-popup .day-cell {
+    -fx-background-color: #0D0D14 !important;
+    -fx-text-fill: #FFFFFF !important;
+    -fx-font-weight: bold !important;
+    -fx-border-color: #C9A84C !important;
+    -fx-border-width: 0.5px !important;
+}
+
+.date-picker-popup .day-cell.previous-month,
+.date-picker-popup .day-cell.next-month {
+    -fx-text-fill: #4E4E6A !important;
+}
+
+.date-picker-popup .day-cell:hover {
+    -fx-background-color: rgba(201, 168, 76, 0.2) !important;
+    -fx-text-fill: #FFFFFF !important;
+}
+
+.date-picker-popup .day-cell:selected,
+.date-picker-popup .day-cell.today {
+    -fx-background-color: #C9A84C !important;
+    -fx-text-fill: #0D0D14 !important;
+}
+
+/* ==========================================================================
+   CÁC THÀNH PHẦN KHÁC ── */
+.combo-box .list-cell,
+.form-combo .list-cell {
+    -fx-text-fill: #E8E0D0;
+    -fx-background-color: #13131F;
+}
+.combo-box .arrow-button { -fx-background-color: transparent; }
+.combo-box .arrow { -fx-background-color: #C9A84C; }
+
+.submit-button, .btn-primary {
+    -fx-background-color: #C9A84C;
+    -fx-text-fill: #0D0D14;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 24;
+    -fx-background-radius: 7px;
+    -fx-cursor: hand;
+}
+
+.submit-button:hover, .btn-primary:hover {
+    -fx-background-color: #D4B86A;
+    -fx-effect: dropshadow(three-pass-box, rgba(201,168,76,0.35), 12, 0, 0, 0);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.secondary-button, .btn-secondary {
+    -fx-background-color: transparent;
+    -fx-text-fill: #8C8CAB;
+    -fx-border-color: #1E1E30;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 10 24;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+
+.table-view {
+    -fx-background-color: #0D0D14;
+    -fx-border-color: #1E1E30;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #13131F;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent #1E1E30 transparent transparent;
+    -fx-size: 40px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #C9A84C;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+.table-row-cell {
+    -fx-background-color: #0D0D14;
+    -fx-border-color: transparent transparent #1A1A2E transparent;
+}
+.table-row-cell:odd  { -fx-background-color: #0F0F1A; }
+.table-row-cell:even { -fx-background-color: #0D0D14; }
+
+.table-cell {
+    -fx-text-fill: #A09898;
+    -fx-font-size: 13px;
+    -fx-padding: 8 12;
+}
+
+.separator .line { -fx-border-color: #1E1E30; }
+.form-divider    { -fx-border-color: #1E1E30; -fx-border-width: 1 0 0 0; }

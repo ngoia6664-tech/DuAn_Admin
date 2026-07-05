@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane stylesheets="@CSSChung.css" styleClass="form-scroll" fitToWidth="true" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.duan_admin.AddShowTimeController">
+    <StackPane styleClass="form-root">
+        <VBox spacing="25" styleClass="form-card" maxWidth="600" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="30" right="40" bottom="30" left="40"/>
+            </padding>
+
+            <VBox spacing="5">
+                <Label text="XẾP LỊCH / SUẤT CHIẾU" styleClass="form-title"/>
+                <Label text="Lập thời gian khởi chiếu cụ thể cho phim tại phòng máy" styleClass="form-subtitle"/>
+            </VBox>
+
+            <Separator styleClass="form-divider"/>
+
+            <VBox spacing="8">
+                <Label text="Chọn phim trình chiếu *" styleClass="input-label"/>
+                <ComboBox fx:id="cmbMovie" promptText="Tìm kiếm phim..." styleClass="form-combo" maxWidth="Infinity"/>
+            </VBox>
+
+            <VBox spacing="8">
+                <Label text="Chọn phòng máy chiếu *" styleClass="input-label"/>
+                <ComboBox fx:id="cmbShowRoom" promptText="Chọn phòng máy thuộc rạp..." styleClass="form-combo" maxWidth="Infinity"/>
+            </VBox>
+
+            <GridPane hgap="20" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="50"/>
+                    <ColumnConstraints percentWidth="50"/>
+                </columnConstraints>
+                <children>
+                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Thời gian bắt đầu *" styleClass="input-label"/>
+                        <TextField fx:id="txtStartTime" promptText="2026-06-28 12:30" styleClass="form-input"/>
+                    </VBox>
+
+                    <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label text="Thời gian kết thúc (Dự kiến) *" styleClass="input-label"/>
+                        <TextField fx:id="txtEndTime" promptText="2026-06-28 14:30" styleClass="form-input"/>
+                    </VBox>
+                </children>
+            </GridPane>
+
+            <VBox spacing="8">
+                <Label text="Giá vé cơ bản (VNĐ) *" styleClass="input-label"/>
+                <TextField fx:id="txtPrice" promptText="Ví dụ: 95000" styleClass="form-input"/>
+            </VBox>
+
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="Quay lại" styleClass="btn-secondary" onAction="#handleCancel"/>
+                <Button text="Phát hành suất" styleClass="btn-primary" onAction="#handleSave"/>
+            </HBox>
+        </VBox>
+    </StackPane>
+</ScrollPane>

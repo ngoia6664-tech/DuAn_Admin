@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.duan_admin.QRScannerController"
+            stylesheets="@CSSChung.css"
+            styleClass="background">
+    <center>
+        <VBox spacing="20" alignment="CENTER">
+            <padding><Insets top="30" right="40" bottom="30" left="40"/></padding>
+
+            <!-- TIÊU ĐỀ -->
+            <Label text="QUÉT MÃ QR VÉ" styleClass="title"/>
+            <Label text="Hướng mã QR vào camera để xác thực vé" styleClass="subtitle"/>
+            <Separator/>
+
+            <!-- CAMERA -->
+            <ImageView fx:id="cameraView"
+                       fitWidth="480" fitHeight="360"
+                       preserveRatio="true"
+                       style="-fx-border-color: #ff5533; -fx-border-width: 2px;"/>
+
+            <!-- NHẬP SHOWTIME ID -->
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Showtime ID:" styleClass="field-label"/>
+                <TextField fx:id="txtShowtimeId"
+                           promptText="Nhập ID suất chiếu"
+                           prefWidth="200"
+                           styleClass="input"/>
+            </HBox>
+
+            <!-- TRẠNG THÁI -->
+            <Label fx:id="lblResult"
+                   wrapText="true"
+                   maxWidth="480"
+                   style="-fx-font-size: 14px; -fx-text-fill: #ffffff;"/>
+
+            <!-- NÚT -->
+            <HBox spacing="15" alignment="CENTER">
+                <Button fx:id="btnStart"
+                        text="▶ BẮT ĐẦU QUÉT"
+                        styleClass="submit-button"
+                        onAction="#handleStart"/>
+                <Button fx:id="btnStop"
+                        text="⏹ DỪNG"
+                        styleClass="secondary-button"
+                        onAction="#handleStop"/>
+                <Button text="← BACK"
+                        styleClass="secondary-button"
+                        onAction="#handleBack"/>
+            </HBox>
+
+        </VBox>
+    </center>
+</BorderPane>

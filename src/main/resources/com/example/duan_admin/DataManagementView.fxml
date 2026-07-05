@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.duan_admin.DataManagementController"
+            styleClass="background" stylesheets="@CSSChung.css">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <top>
+        <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-padding: 0 0 20 0;">
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <ToggleButton fx:id="btnTabCinemas" styleClass="menu-button" onAction="#btnCinema">
+                    <graphic>
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <FontIcon iconLiteral="fas-building" iconSize="15"/>
+                            <Label text="Rạp Chiếu"/>
+                        </HBox>
+                    </graphic>
+                </ToggleButton>
+
+                <ToggleButton fx:id="btnTabShowrooms" styleClass="menu-button" onAction="#btnShowRoom">
+                    <graphic>
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <FontIcon iconLiteral="fas-door-open" iconSize="15"/>
+                            <Label text="Phòng Chiếu"/>
+                        </HBox>
+                    </graphic>
+                </ToggleButton>
+
+                <ToggleButton fx:id="btnTabShowtimes" styleClass="menu-button" onAction="#btnShowTime">
+                    <graphic>
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <FontIcon iconLiteral="fas-clock" iconSize="15"/>
+                            <Label text="Suất Chiếu"/>
+                        </HBox>
+                    </graphic>
+                </ToggleButton>
+
+                <ToggleButton fx:id="btnTabMovies" styleClass="menu-button" onAction="#btnMovie">
+                    <graphic>
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <FontIcon iconLiteral="fas-film" iconSize="15"/>
+                            <Label text="Bộ Phim"/>
+                        </HBox>
+                    </graphic>
+                </ToggleButton>
+
+                <!-- NÚT QUAY LẠI: Thêm vào ngay sau nút Bộ Phim -->
+                <Button fx:id="btnBackToHome" styleClass="menu-button" onAction="#handleBackToHome">
+                    <graphic>
+                        <HBox spacing="8" alignment="CENTER_LEFT">
+                            <FontIcon iconLiteral="fas-home" iconSize="15" style="-fx-icon-color: #C9A84C;"/>
+                            <Label text="Quay lại"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+            </HBox>
+            <Pane HBox.hgrow="ALWAYS"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tblData">
+            <columns>
+                <!-- Phim -->
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colTitle" text="Tên Phim" prefWidth="200"/>
+                <TableColumn fx:id="colGenre" text="Thể Loại" prefWidth="150"/>
+                <TableColumn fx:id="colImage" text="Ảnh" prefWidth="250"/>
+                <TableColumn fx:id="colReleaseDate" text="Ngày Phát Hành" prefWidth="150"/>
+
+                <!-- Rạp Chiếu -->
+                <TableColumn fx:id="colCinemaId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colCinemaName" text="Tên Rạp" prefWidth="200"/>
+                <TableColumn fx:id="colCinemaAddress" text="Địa Chỉ" prefWidth="300"/>
+
+                <!-- Phòng Chiếu -->
+                <TableColumn fx:id="colRoomId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colRoomName" text="Tên Phòng" prefWidth="200"/>
+                <TableColumn fx:id="colCapacity" text="Sức Chứa" prefWidth="100"/>
+
+                <!-- Suất Chiếu -->
+                <TableColumn fx:id="colShowTimeId" text="ID" prefWidth="10"/>
+                <TableColumn fx:id="colMovieName" text="Tên Phim" prefWidth="100"/>
+                <TableColumn fx:id="colCinemaName2" text="Tên Rạp" prefWidth="150"/>
+                <TableColumn fx:id="colAddress" text="Địa Chỉ" prefWidth="150"/>
+                <TableColumn fx:id="colStartTime" text="Giờ Chiếu" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>

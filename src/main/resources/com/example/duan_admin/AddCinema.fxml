@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Polygon?>
+
+<StackPane stylesheets="@CSSChung.css" styleClass="form-root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.duan_admin.AddCinemaController">
+    <!-- Cấu trúc bám sát lên mép trên giúp giao diện gọn gàng -->
+    <VBox spacing="25" styleClass="form-card" maxWidth="500" alignment="TOP_LEFT">
+        <padding>
+            <Insets top="35" right="40" bottom="35" left="40"/>
+        </padding>
+
+        <!-- KHỐI TIÊU ĐỀ -->
+        <VBox spacing="18" alignment="CENTER" fillWidth="true">
+            <!-- Logo CINEVERSE -->
+            <HBox alignment="CENTER" spacing="10" styleClass="logo-container">
+                <Polygon points="0.0, 0.0, 16.0, 9.0, 0.0, 18.0" styleClass="logo-icon"/>
+                <Label text="CINEVERSE" styleClass="logo-text"/>
+            </HBox>
+
+            <!-- Chữ tiêu đề -->
+            <VBox spacing="6" alignment="CENTER">
+                <Label text="THÊM RẠP CHIẾU MỚI" styleClass="form-title"/>
+                <Label text="Vui lòng điền đầy đủ thông tin hệ thống rạp" styleClass="form-subtitle"/>
+            </VBox>
+        </VBox>
+
+        <Separator styleClass="form-divider"/>
+
+        <!-- Ô NHẬP TÊN RẠP -->
+        <VBox spacing="8">
+            <Label text="Tên rạp chiếu *" styleClass="input-label"/>
+            <TextField fx:id="txtName" promptText="Ví dụ: Cineverse Hùng Vương" styleClass="form-input"/>
+        </VBox>
+
+        <!-- Ô NHẬP ĐỊA CHỈ -->
+        <VBox spacing="8">
+            <Label text="Địa chỉ *" styleClass="input-label"/>
+            <TextField fx:id="txtAddress" promptText="Số, Đường, Quận/Huyện, Tỉnh/Thành Phố" styleClass="form-input"/>
+        </VBox>
+
+        <!-- ĐÃ KHỬ BỎ HOÀN TOÀN KHỐI MÔ TẢ NỘI DUNG TẠI ĐÂY -->
+
+        <!-- KHỐI NÚT ĐIỀU HƯỚNG -->
+        <HBox spacing="15" alignment="CENTER_RIGHT" styleClass="button-container">
+            <Button text="Quay lại" styleClass="btn-secondary" onAction="#handleCancel"/>
+            <Button text="Thêm rạp chiếu" styleClass="btn-primary" onAction="#handleSave"/>
+        </HBox>
+    </VBox>
+</StackPane>
