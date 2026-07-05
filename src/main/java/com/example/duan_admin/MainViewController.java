@@ -1,5 +1,8 @@
 package com.example.duan_admin;
 
+import com.example.duan_admin.BaseController;
+import com.example.duan_admin.HTTPService;
+import com.example.duan_admin.Session;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -90,7 +93,7 @@ public class MainViewController {
                 "/api/auth/login",
                 null,
                 body.toString(),
-                Session.getToken()
+                null
         ).thenAccept(response -> {
 
             System.out.println("========== RESPONSE ==========");
@@ -276,6 +279,12 @@ public class MainViewController {
             view.setOpacity(0);
             contentPane.getChildren().clear();
             contentPane.getChildren().add(view);
+
+            FadeTransition fade = new FadeTransition(Duration.millis(200), view);
+            fade.setFromValue(0);
+            fade.setToValue(1);
+            fade.play();
+
             BaseController controller = loader.getController();
             controller.Init();
         } catch (IOException e) {
