@@ -2,73 +2,72 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<ScrollPane stylesheets="@CSSChung.css" styleClass="form-scroll" fitToWidth="true" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.duan_admin.AddMovieController">
-    <StackPane styleClass="form-root">
-        <VBox spacing="25" styleClass="form-card" maxWidth="650" alignment="CENTER_LEFT">
-            <padding>
-                <Insets top="30" right="40" bottom="30" left="40"/>
-            </padding>
+<ScrollPane stylesheets="@CSSChung.css" styleClass="scroll-pane" fitToWidth="true"
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.duan_admin.AddMovieController">
 
-            <VBox spacing="5">
-                <Label text="PHÁT HÀNH PHIM MỚI" styleClass="form-title"/>
-                <Label text="Nhập thông tin phim để hiển thị lên lịch chiếu" styleClass="form-subtitle"/>
-            </VBox>
+    <VBox spacing="25" styleClass="background">
+        <padding><Insets top="35" right="40" bottom="35" left="40"/></padding>
 
-            <Separator styleClass="form-divider"/>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <FontIcon iconLiteral="fas-film" iconSize="24" style="-fx-icon-color: #C9A84C;"/>
+            <Label text="PHÁT HÀNH PHIM MỚI" style="-fx-text-fill: #E8E0D0; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+        </HBox>
+        <Label text="Nhập thông tin phim để hiển thị lên lịch chiếu" style="-fx-text-fill: #6B6B8A; -fx-font-size: 13px;"/>
+        <Separator styleClass="form-divider"/>
 
-            <GridPane hgap="20" vgap="18">
-                <columnConstraints>
-                    <ColumnConstraints percentWidth="50"/>
-                    <ColumnConstraints percentWidth="50"/>
-                </columnConstraints>
+        <GridPane hgap="20" vgap="18">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50"/>
+                <ColumnConstraints percentWidth="50"/>
+            </columnConstraints>
+            <children>
+                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
+                    <Label text="Tiêu đề phim *" styleClass="field-label"/>
+                    <TextField fx:id="txtTitle" promptText="Nhập tên phim..." styleClass="input"/>
+                </VBox>
 
-                <children>
-                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
-                        <Label text="Tiêu đề phim *" styleClass="input-label"/>
-                        <TextField fx:id="txtTitle" promptText="Nhập tên phim..." styleClass="form-input"/>
-                    </VBox>
+                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label text="Thể loại *" styleClass="field-label"/>
+                    <TextField fx:id="txtGenre" promptText="Hành động, Viễn tưởng..." styleClass="input"/>
+                </VBox>
 
-                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                        <Label text="Thể loại *" styleClass="input-label"/>
-                        <TextField fx:id="txtGenre" promptText="Hành động, Viễn tưởng..." styleClass="form-input"/>
-                    </VBox>
+                <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label text="Độ tuổi giới hạn (Rating) *" styleClass="field-label"/>
+                    <ComboBox fx:id="cmbRating" promptText="Chọn giới hạn tuổi" maxWidth="Infinity" styleClass="input"/>
+                </VBox>
 
-                    <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                        <Label text="Độ tuổi giới hạn (Rating) *" styleClass="input-label"/>
-                        <ComboBox fx:id="cmbRating" promptText="Chọn giới hạn tuổi" styleClass="form-combo" maxWidth="Infinity"/>
-                    </VBox>
+                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <Label text="Ngày phát hành *" styleClass="field-label"/>
+                    <DatePicker fx:id="dpReleaseDate" maxWidth="Infinity"/>
+                </VBox>
 
-                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                        <Label text="Ngày phát hành *" styleClass="input-label"/>
-                        <DatePicker fx:id="dpReleaseDate" styleClass="form-datepicker" maxWidth="Infinity"/>
-                    </VBox>
+                <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <Label text="Thời lượng (Phút) *" styleClass="field-label"/>
+                    <TextField fx:id="txtDuration" promptText="Ví dụ: 120" styleClass="input"/>
+                </VBox>
 
-                    <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                        <Label text="Thời lượng (Phút) *" styleClass="input-label"/>
-                        <TextField fx:id="txtDuration" promptText="Ví dụ: 120" styleClass="form-input"/>
-                    </VBox>
+                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2">
+                    <Label text="Hình ảnh Poster *" styleClass="field-label"/>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <TextField fx:id="txtImageUrl" promptText="Dán link URL ảnh hoặc chọn file từ máy..." styleClass="input" HBox.hgrow="ALWAYS"/>
+                        <Button text="Chọn file" styleClass="secondary-button" onAction="#handleSelectImage"/>
+                    </HBox>
+                    <Label fx:id="lblFileName" text="Chưa chọn file cục bộ" style="-fx-font-style: italic; -fx-text-fill: #6B6B8A; -fx-font-size: 12px;"/>
+                </VBox>
 
-                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2">
-                        <Label text="Hình ảnh Poster *" styleClass="input-label"/>
-                        <HBox spacing="10" alignment="CENTER_LEFT">
-                            <TextField fx:id="txtImageUrl" promptText="Dán link URL ảnh hoặc chọn file từ máy..." styleClass="form-input" HBox.hgrow="ALWAYS"/>
-                            <Button text="Chọn file" styleClass="btn-secondary" onAction="#handleSelectImage"/>
-                        </HBox>
-                        <Label fx:id="lblFileName" text="Chưa chọn file cục bộ" style="-fx-font-style: italic; -fx-text-fill: #7f8c8d; -fx-font-size: 12px;"/>
-                    </VBox>
+                <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2">
+                    <Label text="Mô tả nội dung *" styleClass="field-label"/>
+                    <TextArea fx:id="txtDescription" prefHeight="100" promptText="Tóm tắt nội dung phim ngắn gọn..." styleClass="input" wrapText="true"/>
+                </VBox>
+            </children>
+        </GridPane>
 
-                    <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2">
-                        <Label text="Mô tả nội dung *" styleClass="input-label"/>
-                        <TextArea fx:id="txtDescription" prefHeight="100" promptText="Tóm tắt nội dung phim ngắn gọn..." styleClass="form-textarea" wrapText="true"/>
-                    </VBox>
-                </children>
-            </GridPane>
-
-            <HBox spacing="15" alignment="CENTER_RIGHT">
-                <Button text="Quay lại" styleClass="btn-secondary" onAction="#handleCancel"/>
-                <Button text="Thêm phim" styleClass="btn-primary" onAction="#handleSave"/>
-            </HBox>
-        </VBox>
-    </StackPane>
+        <HBox spacing="15" alignment="CENTER_RIGHT">
+            <Button text="Quay lại" styleClass="secondary-button" onAction="#handleCancel"/>
+            <Button text="Thêm phim" styleClass="submit-button" onAction="#handleSave"/>
+        </HBox>
+    </VBox>
 </ScrollPane>

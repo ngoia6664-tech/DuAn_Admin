@@ -15,23 +15,36 @@ import java.util.concurrent.CompletableFuture;
 
 public class HTTPService {
 
+    private static final String DEFAULT_BASE_URL = "http://localhost:8080";
     private static String BASE_URL;
+
     private static final HttpClient httpClient = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(10))
             .build();
 
     static {
-        try (InputStream input = HTTPService.class.getClassLoader().getResourceAsStream("config.properties")) {
-            Properties prop = new Properties();
-            if (input == null) {
-                BASE_URL = "http://localhost:8080";
-            } else {
+
+        Properties prop = new Properties();
+
+        try (InputStream input = HTTPService.class
+                .getClassLoader()
+                .getResourceAsStream("config.properties")) {
+
+            if (input != null) {
                 prop.load(input);
-                BASE_URL = prop.getProperty("base.url");
+                BASE_URL = prop.getProperty("base.url", DEFAULT_BASE_URL);
+            } else {
+                System.out.println("Không tìm thấy config.properties, dùng mặc định.");
+                BASE_URL = DEFAULT_BASE_URL;
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+
+        } catch (Exception e) {
+            System.out.println("Lỗi đọc config.properties, dùng mặc định.");
+            BASE_URL = DEFAULT_BASE_URL;
+            e.printStackTrace();
         }
+
+        System.out.println("BASE_URL = " + BASE_URL);
     }
 
     /**

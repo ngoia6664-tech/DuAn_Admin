@@ -1,5 +1,6 @@
 package com.example.duan_admin;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,10 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 import org.json.JSONObject;
-
+import javafx.scene.image.ImageView;
 import java.io.IOException;
+import java.util.List;
 
 public class MainViewController {
 
@@ -22,7 +26,16 @@ public class MainViewController {
     @FXML private TextField txtUsername;
     @FXML private PasswordField txtPassword;
     @FXML private Label lblStatus;
-
+    @FXML private ImageView loginBgImage;
+    @FXML private Button btnTrangChu;
+    @FXML private Button btnThemPhim;
+    @FXML private Button btnThemRap;
+    @FXML private Button btnThemPhong;
+    @FXML private Button btnThemSuat;
+    @FXML private Button btnQuetQR;
+    @FXML private Button btnQuanTriDuLieu;
+    @FXML private Button btnQuanLyTaiKhoan;
+    private java.util.List<Button> menuButtons;
     private static MainViewController instance;
 
     public static MainViewController getInstance() {
@@ -32,9 +45,23 @@ public class MainViewController {
     @FXML
     public void initialize() {
         instance = this;
-
-        // Mặc định ban đầu: Bắt người dùng đăng nhập trước (Hiện Login, Ẩn Dashboard)
+        loginBgImage.fitWidthProperty().bind(
+                ((StackPane) loginBgImage.getParent()).widthProperty()
+        );
+        loginBgImage.fitHeightProperty().bind(
+                ((StackPane) loginBgImage.getParent()).heightProperty()
+        );
+        menuButtons = List.of(
+                btnTrangChu, btnThemPhim, btnThemRap, btnThemPhong,
+                btnThemSuat, btnQuetQR, btnQuanTriDuLieu, btnQuanLyTaiKhoan
+        );
         showLoginScreen();
+    }
+    private void setActiveButton(Button active) {
+        for (Button btn : menuButtons) {
+            btn.getStyleClass().remove("active-tab");
+        }
+        active.getStyleClass().add("active-tab");
     }
 
     /**
@@ -192,48 +219,69 @@ public class MainViewController {
 
     public void hienTrangHome() {
         loadView("Home.fxml");
+        setActiveButton(btnTrangChu);
     }
 
+    @FXML
+    private void moTrangChu() {
+        hienTrangHome();
+    }
 
     @FXML
     private void moThemPhim() {
         loadView("AddMovie.fxml");
+        setActiveButton(btnThemPhim);
     }
 
     @FXML
     private void moThemRap() {
         loadView("AddCinema.fxml");
+        setActiveButton(btnThemRap);
     }
 
     @FXML
     private void moThemPhong() {
         loadView("AddShowRoom.fxml");
+        setActiveButton(btnThemPhong);
     }
 
     @FXML
     private void moThemSuat() {
         loadView("AddShowTime.fxml");
+        setActiveButton(btnThemSuat);
     }
 
     @FXML
     private void quetQR() {
-        loadView("QRScanner.fxml"); // 👈 Đổi từ println thành loadView
+        loadView("QRScanner.fxml");
+        setActiveButton(btnQuetQR);
     }
+
     @FXML
     private void moQuanTriDuLieu(){
         loadView("DataManagementView.fxml");
+        setActiveButton(btnQuanTriDuLieu);
     }
+
     @FXML
     private void moQuanLyTaiKhoan(){
         loadView("UserManagementView.fxml");
+        setActiveButton(btnQuanLyTaiKhoan);
     }
-
     private void loadView(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            contentPane.getChildren().clear();
             Parent view = loader.load();
+
+            view.setOpacity(0);
+            contentPane.getChildren().clear();
             contentPane.getChildren().add(view);
+
+            FadeTransition fade = new FadeTransition(Duration.millis(200), view);
+            fade.setFromValue(0);
+            fade.setToValue(1);
+            fade.play();
+
             BaseController controller = loader.getController();
             controller.Init();
         } catch (IOException e) {
