@@ -1,75 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.duan_admin.AddShowRoomController"
-            stylesheets="@CSSChung.css"
-            styleClass="background">
+<ScrollPane stylesheets="@CSSChung.css" styleClass="scroll-pane" fitToWidth="true"
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.duan_admin.AddShowRoomController">
 
-    <center>
-        <ScrollPane fitToWidth="true"
-                    fitToHeight="true"
-                    hbarPolicy="NEVER"
-                    vbarPolicy="AS_NEEDED"
-                    styleClass="scroll-pane">
-            <content>
-                <AnchorPane styleClass="background">
-                    <VBox spacing="22"
-                          AnchorPane.topAnchor="30.0"
-                          AnchorPane.leftAnchor="40.0"
-                          AnchorPane.rightAnchor="40.0"
-                          AnchorPane.bottomAnchor="30.0">
+    <VBox spacing="25" styleClass="background">
+        <padding><Insets top="35" right="40" bottom="35" left="40"/></padding>
 
-                        <padding>
-                            <Insets top="30" right="35" bottom="30" left="35"/>
-                        </padding>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <FontIcon iconLiteral="fas-door-open" iconSize="24" style="-fx-icon-color: #C9A84C;"/>
+            <Label text="THÊM PHÒNG CHIẾU" style="-fx-text-fill: #E8E0D0; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+        </HBox>
+        <Label text="Tạo phòng chiếu mới cho hệ thống" style="-fx-text-fill: #6B6B8A; -fx-font-size: 13px;"/>
+        <Separator styleClass="form-divider"/>
 
-                        <VBox alignment="CENTER" spacing="6">
-                            <Label text="THÊM PHÒNG CHIẾU" styleClass="title"/>
-                            <Label text="Tạo phòng chiếu mới cho hệ thống" styleClass="subtitle"/>
-                        </VBox>
+        <Label text="THÔNG TIN PHÒNG CHIẾU" styleClass="section-title"/>
 
-                        <Separator/>
+        <VBox spacing="8">
+            <Label text="Tên phòng *" styleClass="field-label"/>
+            <TextField fx:id="txtRoomName" promptText="Ví dụ: Phòng 01" styleClass="input"/>
+        </VBox>
 
-                        <Label text="THÔNG TIN PHÒNG CHIẾU" styleClass="section-title"/>
+        <VBox spacing="8">
+            <Label text="Rạp chiếu *" styleClass="field-label"/>
+            <ComboBox fx:id="cmbCinema" promptText="Chọn rạp chiếu" maxWidth="Infinity" styleClass="input"/>
+        </VBox>
 
-                        <VBox spacing="8">
-                            <Label text="Tên phòng" styleClass="field-label"/>
-                            <TextField fx:id="txtRoomName"
-                                       promptText="Ví dụ: Phòng 01"
-                                       styleClass="input"/>
-                        </VBox>
+        <Label fx:id="lblStatus" styleClass="status"/>
 
-                        <VBox spacing="8">
-                            <Label text="Rạp chiếu" styleClass="field-label"/>
-                            <ComboBox fx:id="cmbCinema"
-                                      promptText="Chọn rạp chiếu"
-                                      styleClass="input"
-                                      maxWidth="Infinity"/>
-                        </VBox>
-
-                        <Label fx:id="lblStatus" styleClass="status"/>
-
-                        <HBox alignment="CENTER_RIGHT" spacing="15">
-                            <Pane HBox.hgrow="ALWAYS"/>
-
-                            <Button fx:id="btnExit"
-                                    text="BACK"
-                                    styleClass="secondary-button"/>
-
-                            <Button fx:id="btnAdd"
-                                    text="ADD SHOW ROOM"
-                                    styleClass="submit-button"/>
-                        </HBox>
-
-                    </VBox>
-                </AnchorPane>
-            </content>
-        </ScrollPane>
-    </center>
-
-</BorderPane>
+        <HBox spacing="15" alignment="CENTER_RIGHT">
+            <Button text="Quay lại" styleClass="secondary-button" onAction="#handleCancel"/>
+            <Button text="Thêm phòng chiếu" styleClass="submit-button" onAction="#handleSave"/>
+        </HBox>
+    </VBox>
+</ScrollPane>
