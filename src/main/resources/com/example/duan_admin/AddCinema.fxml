@@ -2,33 +2,35 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<StackPane stylesheets="@CSSChung.css" styleClass="form-root" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.duan_admin.AddCinemaController">
-    <VBox spacing="25" styleClass="form-card" maxWidth="500" alignment="CENTER_LEFT">
-        <padding>
-            <Insets top="30" right="40" bottom="30" left="40"/>
-        </padding>
+<ScrollPane stylesheets="@CSSChung.css" styleClass="scroll-pane" fitToWidth="true"
+            xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.duan_admin.AddCinemaController">
 
-        <VBox spacing="5">
-            <Label text="THÊM RẠP CHIẾU MỚI" styleClass="form-title"/>
-            <Label text="Vui lòng điền đầy đủ thông tin hệ thống rạp" styleClass="form-subtitle"/>
-        </VBox>
+    <VBox spacing="25" styleClass="background">
+        <padding><Insets top="35" right="40" bottom="35" left="40"/></padding>
 
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <FontIcon iconLiteral="fas-building" iconSize="24" style="-fx-icon-color: #C9A84C;"/>
+            <Label text="THÊM RẠP CHIẾU MỚI" style="-fx-text-fill: #E8E0D0; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+        </HBox>
+        <Label text="Vui lòng điền đầy đủ thông tin hệ thống rạp" style="-fx-text-fill: #6B6B8A; -fx-font-size: 13px;"/>
         <Separator styleClass="form-divider"/>
 
         <VBox spacing="8">
-            <Label text="Tên rạp chiếu *" styleClass="input-label"/>
-            <TextField fx:id="txtName" promptText="Ví dụ: Cineverse Hùng Vương" styleClass="form-input"/>
+            <Label text="Tên rạp chiếu *" styleClass="field-label"/>
+            <TextField fx:id="txtName" promptText="Ví dụ: Cineverse Hùng Vương" styleClass="input"/>
         </VBox>
 
         <VBox spacing="8">
-            <Label text="Địa chỉ *" styleClass="input-label"/>
-            <TextField fx:id="txtAddress" promptText="Số, Đường, Quận/Huyện, Tỉnh/Thành Phố" styleClass="form-input"/>
+            <Label text="Địa chỉ *" styleClass="field-label"/>
+            <TextField fx:id="txtAddress" promptText="Số, Đường, Quận/Huyện, Tỉnh/Thành Phố" styleClass="input"/>
         </VBox>
 
-        <HBox spacing="15" alignment="CENTER_RIGHT" styleClass="button-container">
-            <Button text="Hủy" styleClass="btn-secondary" onAction="#handleCancel"/>
-            <Button text="Lưu rạp chiếu" styleClass="btn-primary" onAction="#handleSave"/>
+        <HBox spacing="15" alignment="CENTER_RIGHT">
+            <Button text="Quay lại" styleClass="secondary-button" onAction="#handleCancel"/>
+            <Button text="Thêm rạp chiếu" styleClass="submit-button" onAction="#handleSave"/>
         </HBox>
     </VBox>
-</StackPane>
+</ScrollPane>
