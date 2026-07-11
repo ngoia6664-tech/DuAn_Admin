@@ -37,3 +37,12 @@ build/
 
 ### Mac OS ###
 .DS_Store
+# Ignore thư mục đầu ra của jpackage
+output_exe/
+
+# Nếu muốn cẩn thận hơn, ignore toàn bộ file .exe sinh ra ngoài ý muốn
+*.exe
+
+# (Tùy chọn) Ignore luôn thư mục target của Maven nếu chưa có
+target/
+

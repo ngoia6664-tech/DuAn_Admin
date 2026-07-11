@@ -109,7 +109,7 @@ public class AddMovieController extends BaseController{
                 byte[] multipartBody = createMultipartBody(boundary, jsonRequest, selectedImageFile);
 
                 HttpRequest httpRequest = HttpRequest.newBuilder()
-                        .uri(URI.create(ConfigLoader.getBaseUrl()+"api/feature/addMovieInfo"))
+                        .uri(URI.create(ConfigLoader.getBaseUrl()+"/api/feature/addMovieInfo"))
                         .timeout(Duration.ofSeconds(30))
                         .header("Content-Type", "multipart/form-data; boundary=" + boundary)
                         .header("Authorization", "Bearer " + Session.getToken())
